@@ -1,0 +1,32 @@
+{
+    "configurations": [
+        {
+            "name": "장고 디버그",
+            "type": "python",
+            "request": "attach",
+            "connect": {
+                "host": "127.0.0.1",
+                "port": 5678
+            },
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}/api",
+                    "remoteRoot": "/app"
+                }
+            ],
+        },
+        {
+            "name": "리액트 디버그",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost",
+            "webRoot": "${workspaceRoot}/web/src",
+            "sourceMapPathOverrides": {
+                "/app/src/*": "${webRoot}/*"
+            },
+            "runtimeArgs": [
+                "--remote-debugging-port=9229"
+            ]
+        }
+    ]
+}
