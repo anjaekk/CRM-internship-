@@ -1,0 +1,17 @@
+FROM node:12-buster-slim
+
+RUN apt-get update -y
+RUN apt-get install -y python make g++
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+ENV PATH /app/node_modules/.bin:$PATH
+
+COPY ./package.json /app/package.json
+RUN npm install
+RUN npm install react-scripts@3.0.1 -g
+
+EXPOSE 80
+
+CMD ["npm", "run", "start"]
