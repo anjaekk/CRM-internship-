@@ -17,6 +17,8 @@ media
 
 ### Django.Python Stack ###
 # Byte-compiled / optimized / DLL files
+# Byte-compiled / optimized / DLL files
+__pycache__/
 *.py[cod]
 *$py.class
 
@@ -72,6 +74,17 @@ cover/
 *.mo
 
 # Django stuff:
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
 
 # Flask stuff:
 instance/
@@ -112,6 +125,10 @@ __pypackages__/
 # Celery stuff
 celerybeat-schedule
 celerybeat.pid
+.python-version
+
+# celery beat schedule file
+celerybeat-schedule
 
 # SageMath parsed files
 *.sage.py
