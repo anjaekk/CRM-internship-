@@ -10,7 +10,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 RUN apt-get update -y
-RUN apt-get install -y gcc build-essential default-libmysqlclient-dev
+RUN apt-get install -y gcc python3-dev libmariadb-dev
 
 # Install pip requirements
 COPY requirements.txt .
