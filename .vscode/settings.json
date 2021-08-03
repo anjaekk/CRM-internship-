@@ -1,0 +1,23 @@
+{
+    "python.analysis.extraPaths": [
+        "app",
+        "/Users/jaegyeong/intern/b2tech-intern-22/api"
+    ],
+    "python.linting.pylintPath": "/Users/jaegyeong/miniconda3/bin/pylint",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.linting.pylintArgs": [
+        "--load-plugins",
+        "pylint_django",
+        "--disable",
+        "django-not-configured",
+        "--help-msg",
+        "django-not-configured",
+        "--errors-only"
+    ],
+    "html.validate.scripts": false,
+    "html.validate.styles": false,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": true
+}
