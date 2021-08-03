@@ -1,18 +1,6 @@
 version: '3.4'
 
 services:
-  db:
-    container_name: db
-    image: mariadb:latest
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASWORD: wecode22
-    volumes:
-      - .volumes/mariadb/data:/var/lib/mysql
-      - .volumes/mariadb/conf.d:/etc/mysql/conf.d
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/locatime:/etc/localtime:ro
   api:
     image: api
     container_name: api
@@ -40,3 +28,5 @@ services:
       - "./web:/app"
       - "/app/node_modules"
     command: yarn --cwd web start
+    depends_on: 
+      - api
