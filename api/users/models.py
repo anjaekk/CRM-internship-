@@ -21,14 +21,17 @@ JOB_TITLE = (
 )
 
 class UserManager(BaseUserManager):
-    def create_user(self, employee_number, name, password=None):
+    def create_user(self, employee_number, name, password):
         if not employee_number:
             raise ValueError('must have user employee_number')
         if not name:
             raise ValueError('must have user name')
+        if not password:
+            raise ValueError('must have user password')
         user = self.model(
             employee_number = employee_number,
-            name = name
+            name = name,
+            password = password
         )
         user.save(using=self._db)
         return user
@@ -40,7 +43,6 @@ class User(AbstractBaseUser):
     phone_number = models.CharField(max_length=45, unique=True)
     department = models.SmallIntegerField(choices=DEPARTMENT)
     job_title = models.SmallIntegerField(choices=JOB_TITLE)
-    image_url = models.CharField(max_length=200)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
