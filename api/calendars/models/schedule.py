@@ -1,14 +1,12 @@
 from django.db import models
 
-from sales.models.timestamp import TimeStamp
+from sales.models import CreateTime
 from calendars.models.user_schedule import UserSchedule
-from companies.models.company import Company
-from companies.models.contact import Contact
-
+from companies.models import Company, Contact
 from users.models import User
 
 
-class Schedule(TimeStamp):
+class Schedule(CreateTime):
     user = models.ManyToManyField(User, through=UserSchedule)
     title = models.CharField(max_length=300)
     content = models.TextField()

@@ -1,11 +1,11 @@
 from django.db import models
 
-from sales.models.timestamp import TimeStamp
-from companies.models.company import Company
-from sales.models.product import Product
+from sales.models import CreateTime, Product
+from companies.models import Company
+from sales.models.create_time import CreateTime
 
 
-class Contract(TimeStamp):
+class Contract(CreateTime):
     company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True)
     start_date = models.DateField()
     end_date = models.DateField()
