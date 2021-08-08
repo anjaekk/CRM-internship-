@@ -1,8 +1,10 @@
 from django.db import models
+from django.db.models.fields.related import ManyToManyField
 
 from sales.models import CreateTime, Product
 from companies.models import Company
-from sales.models.create_time import CreateTime
+from sales.models import CreateTime
+from users.models import User
 
 
 class Contract(CreateTime):
@@ -12,6 +14,7 @@ class Contract(CreateTime):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     unit_price = models.DecimalField(max_digits=18, decimal_places=2, null=True, blank=True)
     price = models.DecimalField(max_digits=18, decimal_places=2)
+    user = ManyToManyField(User, through='UserContract')
 
     def __str__(self):
         return self.company
