@@ -1,5 +1,6 @@
 import React from 'react';
 
+// STYLES
 import styled, { css } from 'styled-components';
 
 function Option({ selects }) {
@@ -13,6 +14,4 @@ function Option({ selects }) {
 }
 
 export default Option;
-const OptionEle = styled.option`
-  //
-`;
+const OptionEle = styled.option``;

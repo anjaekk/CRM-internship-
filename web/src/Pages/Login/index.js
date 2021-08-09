@@ -1,5 +1,8 @@
 import React from 'react';
+import Priority from '../../Components/Atoms/Priority/Priority';
+import Table from '../../Components/Molecules/Table/Table';
 
+// TEMPLETE
 import Templete from './Templetes/index';
 
 function index() {

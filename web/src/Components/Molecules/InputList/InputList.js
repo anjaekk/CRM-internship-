@@ -1,7 +1,10 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
 
+// ATOMS
 import Input from '../../Atoms/Input/Input';
+
+// STYLES
+import styled, { css } from 'styled-components';
 
 function InputList({ inputLists }) {
   return (

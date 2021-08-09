@@ -1,8 +1,12 @@
 import React from 'react';
+
+// STYLES
 import styled, { css } from 'styled-components';
 
 function Input({ placeholder, type }) {
-  return <InputEle placeholder={placeholder} type={type}></InputEle>;
+  return (
+    <InputEle placeholder={placeholder} type={type ? type : null}></InputEle>
+  );
 }
 
 export default Input;

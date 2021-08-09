@@ -1,7 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
 
+// ATOMS
 import Button from '../../Atoms/Button/Button';
+
+// STYLES
+import styled from 'styled-components';
 
 function ButtonList({ buttonLists }) {
   return (

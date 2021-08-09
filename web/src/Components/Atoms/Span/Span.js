@@ -1,4 +1,6 @@
 import React from 'react';
+
+// STYLES
 import styled, { css } from 'styled-components';
 
 function Span({ children, size }) {

@@ -1,8 +1,7 @@
 import React from 'react';
 
-import Modal from 'react-modal';
+// ATOMS
 import Calendar from '../../Components/Atoms/Calendar/Calendar';
-Modal.setAppElement('#root');
 
 function index() {
   return (

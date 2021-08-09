@@ -1,5 +1,6 @@
 import React from 'react';
 
+// TEMPLETE
 import Templete from './Templetes/index';
 
 function index() {

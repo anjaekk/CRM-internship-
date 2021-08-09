@@ -1,6 +1,10 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+
+// ATOMS
 import Option from '../Option/Option';
+
+// STYLES
+import styled, { css } from 'styled-components';
 
 function Select({ selects, name, size }) {
   return (

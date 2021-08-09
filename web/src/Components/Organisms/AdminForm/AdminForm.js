@@ -1,11 +1,16 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
 
+// ATOMS
 import Span from '../../Atoms/Span/Span';
+
+// MOLECULES
 import ButtonList from '../../Molecules/ButtonList/ButtonList';
 import InputList from '../../Molecules/InputList/InputList';
 import SelectList from '../../Molecules/SelectList/SelectList';
 import SignupInputList from '../../Molecules/SignupInputList/SignupInputList';
+
+// STYLES
+import styled, { css } from 'styled-components';
 
 function AdminForm({ data_type }) {
   const { title, inputLists, selectLists, signupInputLists, buttonLists } =

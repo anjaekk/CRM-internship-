@@ -1,6 +1,10 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+
+// ATOMS
 import Input from '../../Atoms/Input/Input';
+
+// STYLES
+import styled, { css } from 'styled-components';
 
 function SignupInputList({ signupInputLists }) {
   return (
@@ -15,8 +19,5 @@ function SignupInputList({ signupInputLists }) {
 export default SignupInputList;
 
 const SignupInputListEle = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  ${({ theme }) => theme.flex('center', 'center', 'column')}
 `;

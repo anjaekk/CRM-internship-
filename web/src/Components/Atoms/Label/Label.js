@@ -1,4 +1,6 @@
 import React from 'react';
+
+// STYLES
 import styled, { css } from 'styled-components';
 
 function Label({ children }) {
@@ -7,6 +9,4 @@ function Label({ children }) {
 
 export default Label;
 
-const LabelEle = styled.label`
-  /*  */
-`;
+const LabelEle = styled.label``;

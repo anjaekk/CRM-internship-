@@ -1,8 +1,17 @@
-import React, { Children } from 'react';
-import { Switch } from 'react-router-dom';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+
+// STYLES
 import styled, { css } from 'styled-components';
 
 function Button({ children, bg, padding }) {
+  const history = useHistory();
+  //만약 path 가 있으면 가고 없으면 form 전송해야한다.
+  // 로그인이던 회원가입이던 그냥 다른 fetch를 위한 전송이던
+  // const handleClick = path => {
+  // history.push(`/${path}`);
+  // };
+
   return (
     <ButtonEle bg={bg} padding={padding}>
       {children}

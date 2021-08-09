@@ -1,7 +1,10 @@
 import React from 'react';
 
-import styled from 'styled-components';
+// ORGANISMS
 import AdminForm from '../../../Components/Organisms/AdminForm/AdminForm';
+
+// STYLES
+import styled from 'styled-components';
 
 function index({ data_type }) {
   return (
