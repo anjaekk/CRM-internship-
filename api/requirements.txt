@@ -1,5 +1,8 @@
 Django
 djangorestframework
+djangorestframework-jwt
+django-rest-authtoken
 PyMySQL
 mysqlclient
 django-cors-headers
+drf_yasg
