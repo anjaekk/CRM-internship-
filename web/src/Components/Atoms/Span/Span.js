@@ -25,8 +25,6 @@ const handleFontSize = size => {
 };
 
 const SpanEle = styled.span`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${({ theme }) => theme.flex('center', 'center', null)}
   font-size: ${({ size }) => handleFontSize(size)};
 `;

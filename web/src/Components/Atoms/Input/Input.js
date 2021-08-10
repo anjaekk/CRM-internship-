@@ -1,11 +1,16 @@
 import React from 'react';
 
 // STYLES
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-function Input({ placeholder, type }) {
+function Input({ placeholder, type, onChange, value }) {
   return (
-    <InputEle placeholder={placeholder} type={type ? type : null}></InputEle>
+    <InputEle
+      value={value ? value : null}
+      placeholder={placeholder}
+      type={type ? type : null}
+      onChange={onChange ? onChange : null}
+    />
   );
 }
 

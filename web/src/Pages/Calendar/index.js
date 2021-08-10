@@ -1,14 +1,27 @@
 import React from 'react';
 
-// ATOMS
-import Calendar from '../../Components/Atoms/Calendar/Calendar';
+// LIBRARY
+import Modal from 'react-modal';
+
+// TEMPLETE
+import Templete from './Templete/index';
+
+// STYLES
+import styled from 'styled-components';
+
+Modal.setAppElement('#root');
 
 function index() {
   return (
-    <div>
-      <Calendar />
-    </div>
+    <CalendarEle>
+      <Templete />
+    </CalendarEle>
   );
 }
 
 export default index;
+
+const CalendarEle = styled.div`
+  position: relative;
+  z-index: 0;
+`;
