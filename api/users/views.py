@@ -1,4 +1,5 @@
 from drf_yasg.utils import swagger_auto_schema
+from rest_framework import response
 
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
@@ -10,8 +11,15 @@ from .serializers import UserSignupSerializer
 
 class SignUpView(APIView):
     permission_classes = [AllowAny]
-    
-    @swagger_auto_schema(operation_description="partial_update description override", responses={404: 'slug not found'})
+
+    @swagger_auto_schema(
+        request_body=UserSignupSerializer,
+        response={
+            "201":"SUCCESS",
+            "400":"BAD_REQUEST"
+        },
+        operation_id="회원가입",
+        operation_description="사번, 비밀번호, 이름, 핸드폰 번호, 부서(0 ~ 4), 직급(0 ~ 7)을 body에 담아 보내주세요.(비밀번호는 8자 이상)")
     def post(self, request):
         serializer = UserSignupSerializer(data=request.data)
 
