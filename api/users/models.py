@@ -21,7 +21,7 @@ JOB_TITLE = (
 )
 
 class UserManager(BaseUserManager):
-    def create_user(self, employee_number, name, password):
+    def create_user(self, employee_number, name, password, **extra_fields):
         if not employee_number:
             raise ValueError('must have user employee_number')
         if not name:
@@ -31,7 +31,8 @@ class UserManager(BaseUserManager):
         user = self.model(
             employee_number = employee_number,
             name = name,
-            password = password
+            password = password,
+            **extra_fields
         )
         user.save(using=self._db)
         return user
