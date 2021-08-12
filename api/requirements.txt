@@ -1,6 +1,7 @@
 Django
 djangorestframework
 djangorestframework-jwt
+django-rest-auth
 django-rest-authtoken
 PyMySQL
 mysqlclient
