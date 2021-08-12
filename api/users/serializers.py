@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.models import update_last_login
 from django.db.models import fields
@@ -7,7 +7,11 @@ from rest_framework import serializers
 
 from rest_framework_jwt.settings import api_settings
 from django.contrib.auth.backends import BaseBackend
-User = get_user_model()
+
+
+from .models import User
+
+# User = get_user_model()
 
 class UserSignupSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,22 +19,13 @@ class UserSignupSerializer(serializers.ModelSerializer):
         fields = '__all__'
         extra_kwargs = {"password": {"write_only":True}}
 
-    def validate(self, validated_data):
-        print("============validatd_data=========")
-        print(validated_data)
+    def create(self, validated_data):
+        user = User.objects.create_user(**validated_data)
         if len(validated_data["password"]) < 8:
             raise serializers.ValidationError(
                 "The password has to be at least 8 chars long"
             )
-        user = User.objects.create_user(**validated_data)
         return user
-
-
-
-
-
-
-
 
 
 JWT_PAYLOAD_HANDLER = api_settings.JWT_PAYLOAD_HANDLER

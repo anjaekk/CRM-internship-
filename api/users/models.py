@@ -28,8 +28,6 @@ class UserManager(BaseUserManager):
             raise ValueError('must have user name')
         if not password:
             raise ValueError('must have user password')
-        print("=====================")
-        print(password)
         user = self.model(
             employee_number = employee_number,
             name = name,
@@ -37,8 +35,6 @@ class UserManager(BaseUserManager):
         )
         user.set_password(password)
         user.save(using=self._db)
-        
-        User.objects.get(employee_number=employee_number).password
         return user
 
 class User(AbstractBaseUser):

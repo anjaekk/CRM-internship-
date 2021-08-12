@@ -12,6 +12,7 @@ from .serializers import UserSignupSerializer, UserSignInSerializer
 from .models import User
 
 class SignUpView(CreateAPIView):
+    
     serializer_class = UserSignupSerializer
     permission_classes = [AllowAny]
 
@@ -25,8 +26,6 @@ class SignUpView(CreateAPIView):
         operation_description="사번, 비밀번호, 이름, 핸드폰 번호, 부서(0 ~ 4), 직급(0 ~ 7)을 body에 담아 보내주세요.(비밀번호는 8자 이상)\n *부서 정보: 0 = 임원, 1 = 경영지원, 2 = 영업지원, 3 = 개발, 4 = 마케팅\n *직급 정보: 0 = 대표이사, 1 = 이사, 2 = 부장, 3 = 차장, 4 = 과장, 5 = 대리, 6 = 주임, 7 = 사원")
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
-        print("==================serializer============")
-        print(serializer)
         serializer.is_valid(raise_exception = True)
         serializer.save()
         return Response({"message":"SUCCESS"}, status = status.HTTP_201_CREATED)
