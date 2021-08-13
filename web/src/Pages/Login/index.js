@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 // TEMPLETE
 import Templete from './Templetes/index';
@@ -19,20 +20,18 @@ function index() {
   const fetchLogin = () => {
     const { employee_number, password } = userInfo;
 
-    console.log(`"this is loginFetch" `, 'this is loginFetch');
-
-    // fetch(`http://10.58.6.179:8000/users/signup`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     employee_number,
-    //     password,
-    //   }),
-    // })
-    //   .then(res => res.json())
-    //   .then(res => console.log(`res`, res));
+    fetch(`http://192.168.0.149:8000/users/signin`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        employee_number,
+        password,
+      }),
+    })
+      .then(res => res.json())
+      .then(res => console.log(`res`, res));
   };
 
   const goToSignup = () => {
@@ -49,3 +48,22 @@ function index() {
 }
 
 export default index;
+
+// {
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+//   body: JSON.stringify({
+//     employee_number,
+//     password,
+//   }),
+// }
+
+// axios({
+
+// })
+
+// .then(res => res.json())
+// .then(res => console.log(`res`, res))
+// .catch(err => console.log(`err`, err));
