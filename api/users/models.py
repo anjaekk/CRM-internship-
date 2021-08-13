@@ -20,6 +20,7 @@ JOB_TITLE = (
     (7, '사원'),
 )
 
+
 class UserManager(BaseUserManager):
     def create_user(self, employee_number, name, password=None, **extra_fields):
         if not employee_number:
@@ -37,6 +38,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
 class User(AbstractBaseUser):
     employee_number = models.CharField(max_length=45, unique=True)
     name = models.CharField(max_length=45)
@@ -45,7 +47,6 @@ class User(AbstractBaseUser):
     job_title = models.SmallIntegerField(choices=JOB_TITLE)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
-
 
     USERNAME_FIELD = 'employee_number'
     REQUIRED_FIELDS = ['name']

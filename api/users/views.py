@@ -1,5 +1,7 @@
 from drf_yasg.utils import swagger_auto_schema
 
+from django.contrib.auth import get_user_model
+
 from rest_framework.views import APIView
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
@@ -9,10 +11,11 @@ from rest_framework.authtoken.models import Token
 
 from .serializers import UserSignupSerializer, UserSignInSerializer
 
-from .models import User
+User = get_user_model()
+
 
 class SignUpView(CreateAPIView):
-    
+
     serializer_class = UserSignupSerializer
     permission_classes = [AllowAny]
 
@@ -44,13 +47,10 @@ class SignInView(APIView):
         operation_description="사번, 비밀번호를 body에 담아 보내주세요.")
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
-
-        if serializer.is_valid(raise_exception=True):
-            response = {
-            "success":"True",
-            "status_code":status.HTTP_200_OK,
+        serializer.is_valid(raise_exception=True)
+        user = serializer.data
+        response = {
             "message":"SUCCESS",
-            "token":serializer.data['token']
-            }
-            return Response(serializer.data, status = status.HTTP_200_OK)
-        return Response({"message":"INVALID_ERROR"}, status = status.HTTP_400_BAD_REQUEST)
+            "employee_number": user
+        }
+        return Response(response, status = status.HTTP_200_OK)
