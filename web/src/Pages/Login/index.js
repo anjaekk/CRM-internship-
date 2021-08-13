@@ -1,34 +1,51 @@
-import React from 'react';
-import Priority from '../../Components/Atoms/Priority/Priority';
-import Table from '../../Components/Molecules/Table/Table';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 // TEMPLETE
 import Templete from './Templetes/index';
 
 function index() {
-  return <Templete data_type={login} />;
+  const history = useHistory();
+  const [userInfo, setUserInfo] = useState({
+    employee_number: '',
+    password: '',
+  });
+
+  const onChangeUserValue = e => {
+    const { value, name } = e.target;
+    setUserInfo({ ...userInfo, [name]: value });
+  };
+
+  const fetchLogin = () => {
+    const { employee_number, password } = userInfo;
+
+    console.log(`"this is loginFetch" `, 'this is loginFetch');
+
+    // fetch(`http://10.58.6.179:8000/users/signup`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     employee_number,
+    //     password,
+    //   }),
+    // })
+    //   .then(res => res.json())
+    //   .then(res => console.log(`res`, res));
+  };
+
+  const goToSignup = () => {
+    history.push('/signup');
+  };
+
+  return (
+    <Templete
+      fetchLogin={fetchLogin}
+      onChange={onChangeUserValue}
+      goToSignup={goToSignup}
+    />
+  );
 }
 
 export default index;
-
-const login = {
-  title: '로그인',
-  inputLists: [
-    {
-      title: '사번을 입력해주세요',
-      type: 'text',
-    },
-    {
-      title: '비밀번호를 입력해주세요',
-      type: 'password',
-    },
-  ],
-  buttonLists: [
-    {
-      title: '회원가입으로 바로가기',
-    },
-    {
-      title: '로그인',
-    },
-  ],
-};

@@ -1,56 +1,142 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 // TEMPLETE
 import Templete from './Templetes/index';
 
 function index() {
-  return <Templete data_type={signup} />;
+  const history = useHistory();
+  const [selectDepartment, setSelectDepartment] = useState(
+    selectList_department
+  );
+  const [selectPosition, setSelectPosition] = useState(selectList_position);
+
+  const [selectValue, setSelectValue] = useState({
+    department: 0,
+    position: 0,
+  });
+
+  const [userInfo, setUserInfo] = useState({
+    employee_number: '',
+    password: '',
+    name: '',
+    contact: '',
+  });
+
+  const onChangeUserValue = e => {
+    const { value, name } = e.target;
+    setUserInfo({ ...userInfo, [name]: value });
+  };
+
+  const onChangeSelectValue = e => {
+    const { name, value } = e.target;
+    setSelectValue({ ...selectValue, [name]: value });
+  };
+
+  const goToLogin = () => {
+    history.push('/');
+  };
+
+  // FETCH 함수 다른곳으로 빼야한다.
+  const fetchSignup = () => {
+    const { employee_number, password, name, contact } = userInfo;
+    const { department, position } = selectValue;
+
+    console.log(`"this is Signup Fetch" `, 'this is Signup Fetch');
+    // fetch(`http://10.58.6.179:8000/users/signup`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     employee_number,
+    //     password,
+    //     name,
+    //     phone_number: contact,
+    //     department,
+    //     job_title: position,
+    //   }),
+    // })
+    //   .then(res => res.json())
+    //   .then(res => console.log(`res`, res));
+  };
+
+  return (
+    <Templete
+      fetchSignup={fetchSignup}
+      onChangeSelectValue={onChangeSelectValue}
+      selectDepartment={selectDepartment}
+      selectPosition={selectPosition}
+      onChangeUserValue={onChangeUserValue}
+      goToLogin={goToLogin}
+    />
+  );
 }
 
 export default index;
 
-const signup = {
-  title: '회원가입',
-  inputLists: [
+const selectList_department = {
+  id: 0,
+  title: 'department',
+  selects: [
     {
-      title: '사번을 입력해주세요',
-      type: 'text',
+      id: 0,
+      title: '임원',
     },
     {
-      title: '비밀번호를 입력해주세요',
-      type: 'password',
-    },
-  ],
-  signupInputLists: [
-    {
-      title: '이름을 입력해주세요',
-      type: 'text',
+      id: 1,
+      title: '경영지원',
     },
     {
-      title: '연락처를 입력해주세요',
-      type: 'text',
-    },
-  ],
-  buttonLists: [
-    {
-      title: '로그인으로 바로가기',
-      bg: '',
+      id: 2,
+      title: '영업지원',
     },
     {
-      title: '회원가입',
-      bg: '',
+      id: 3,
+      title: '개발',
+    },
+    {
+      id: 4,
+      title: '마케팅',
     },
   ],
-  selectLists: [
+};
+
+const selectList_position = {
+  id: 1,
+  title: 'position',
+  selects: [
     {
-      title: '부서명',
-      selects: ['부서1', '부서2', '부서3'],
-      size: 'mid',
+      id: 0,
+      title: '대표이사',
     },
     {
-      title: '직책명',
-      selects: ['직책1', '직책2', '직책3'],
-      size: 'mid',
+      id: 1,
+      title: '이사',
+    },
+    {
+      id: 2,
+      title: '부장',
+    },
+    {
+      id: 3,
+      title: '차장',
+    },
+    {
+      id: 4,
+      title: '과장',
+    },
+    {
+      id: 5,
+      title: '대리',
+    },
+    {
+      id: 6,
+      title: '주임',
+    },
+    {
+      id: 7,
+      title: '사원',
     },
   ],
 };
