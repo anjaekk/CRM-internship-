@@ -2,6 +2,7 @@ gunicorn
 Django
 djangorestframework
 djangorestframework-jwt
+django-rest-auth
 PyMySQL
 mysqlclient
 django-cors-headers
