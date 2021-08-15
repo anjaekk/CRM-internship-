@@ -40,11 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'drf_yasg',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
     'corsheaders',
+    'django_filters',
+
     'users',
     'companies',
     'calendars',
@@ -182,7 +185,10 @@ REST_FRAMEWORK = {
         # 자동으로 json으로 바꿔줌
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
-    ]
+    ],
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
 }
 
 REST_USE_JWT = True

@@ -2,22 +2,22 @@ from django.db import models
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
 
 DEPARTMENT = (
-    (0, '임원'),
-    (1, '경영지원'),
-    (2, '영업지원'),
-    (3, '개발'),
-    (4, '마케팅'),
+    ("EXECUTIVE", "임원"),
+    ("MANAGEMENT_SUPPORT", "경영지원"),
+    ("SALES_SUPPORT", "영업지원"),
+    ("TECHNICAL_SUPPORT", "개발"),
+    ("MARKETING", "마케팅"),
 )
 
 JOB_TITLE = (
-    (0, '대표이사'),
-    (1, '이사'),
-    (2, '부장'),
-    (3, '차장'),
-    (4, '과장'),
-    (5, '대리'),
-    (6, '주임'),
-    (7, '사원'),
+    ("CEO", "대표이사"),
+    ("DIRECTOR", "이사"),
+    ("DEPUTY_MANAGER", "부장"),
+    ("DEPUTY_GENERAL_MANAGER", "차장"),
+    ("MANAGE", "과장"),
+    ("ASSISTANT_MANAGER", "대리"),
+    ("SENIOR_STAFF", "주임"),
+    ("STAFF", "사원"),
 )
 
 
