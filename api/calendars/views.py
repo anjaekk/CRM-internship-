@@ -6,19 +6,20 @@ from datetime import datetime
 from rest_framework.generics import ListAPIView
 from rest_framework.filters    import OrderingFilter
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import viewsets
 
 from .models import Schedule
-from .serializers import ScheduleSerializer
+from .serializers import CalendarSerializer
 
 
 class CalendarsListView(ListAPIView):
-    serializer_class = ScheduleSerializer
+    serializer_class = CalendarSerializer
     permission_classes = [IsAuthenticated]
 
     filter_backends = [OrderingFilter]
 
     @swagger_auto_schema(
-        request_body=ScheduleSerializer,
+        request_body=CalendarSerializer,
         response={
             "200":"SUCCESS",
             "400":"BAD_REQUEST"
@@ -33,5 +34,5 @@ class CalendarsListView(ListAPIView):
             queryset = queryset.filter(Q(schedule_date__year=year)& Q(schedule_date__month=month))
             return queryset
 
-# >>> s1.schedule_date
-# datetime.datetime(2021, 8, 16, 6, 23, 53, tzinfo=<UTC>)
+# class ScheduleViewSet(viewsets):
+#     queryset = Schedule.objects.all()

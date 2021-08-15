@@ -3,7 +3,7 @@ from rest_framework.serializers import ModelSerializer, ReadOnlyField
 from .models import Schedule
 
 
-class ScheduleSerializer(ModelSerializer):
+class CalendarSerializer(ModelSerializer):
     company_name = ReadOnlyField(source='company.name')
 
     class Meta:
