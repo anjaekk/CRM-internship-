@@ -1,7 +1,11 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, ReadOnlyField
+
 from .models import Schedule
 
+
 class ScheduleSerializer(ModelSerializer):
+    company_name = ReadOnlyField(source='company.name')
+
     class Meta:
         model = Schedule
-        fields = ['company', 'schedule_date']
+        fields = ['id', 'company_name', 'schedule_date']

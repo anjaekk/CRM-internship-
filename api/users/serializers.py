@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import update_last_login
 
 from rest_framework import serializers 
-from rest_framework_jwt.settings import api_settings  #로그인
+from rest_framework_jwt.settings import api_settings
 
 User = get_user_model()
 
@@ -21,7 +21,7 @@ class UserSignupSerializer(serializers.ModelSerializer):
                 "The password has to be at least 8 chars long"
             )
         return user
-        
+
 
 JWT_PAYLOAD_HANDLER = api_settings.JWT_PAYLOAD_HANDLER
 JWT_ENCODE_HANDLER = api_settings.JWT_ENCODE_HANDLER
