@@ -1,7 +1,7 @@
-# from django.urls import path
+from django.urls import path
 
-# from .views import CalendarsListView
+from .views import CalendarsListView
 
-# urlpatterns = [
-#     path('/calendars', CalendarsListView.as_view(), name='calendars'),
-# ]
+urlpatterns = [
+    path('', CalendarsListView.as_view(), name='calendars'),
+]
