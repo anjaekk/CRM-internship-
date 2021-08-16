@@ -1,11 +1,17 @@
+from django.db.models import fields
 from rest_framework.serializers import ModelSerializer, ReadOnlyField
 
 from .models import Schedule
 
 
 class CalendarSerializer(ModelSerializer):
-    company_name = ReadOnlyField(source='company.name')
-
+    title = ReadOnlyField(source="company.name")
+    start = ReadOnlyField(source="schedule_date")
     class Meta:
         model = Schedule
-        fields = ['id', 'company_name', 'schedule_date']
+        fields = ["id", "title", "start"]
+
+class ScheduleSerializer(ModelSerializer):
+    class Meta:
+        model = Schedule
+        fields = "__all__"

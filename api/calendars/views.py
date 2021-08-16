@@ -1,7 +1,10 @@
+from datetime import datetime
+from django.db.models.query import QuerySet
+
 from drf_yasg.utils import swagger_auto_schema
 
 from django.db.models   import Q
-from datetime import datetime
+from django.shortcuts import get_object_or_404
 
 from rest_framework.generics import ListAPIView
 from rest_framework.filters    import OrderingFilter
@@ -9,7 +12,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets
 
 from .models import Schedule
-from .serializers import CalendarSerializer
+from .serializers import CalendarSerializer, ScheduleSerializer
 
 
 class CalendarsListView(ListAPIView):
@@ -34,5 +37,7 @@ class CalendarsListView(ListAPIView):
             queryset = queryset.filter(Q(schedule_date__year=year)& Q(schedule_date__month=month))
             return queryset
 
-# class ScheduleViewSet(viewsets):
-#     queryset = Schedule.objects.all()
+class ScheduleViewSet(viewsets.ModelViewSet):
+    queryset = Schedule.objects.all()
+    serializer_class = ScheduleSerializer(queryset, many=True)
+    permission_classes = [IsAuthenticated]
