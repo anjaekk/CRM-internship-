@@ -1,5 +1,5 @@
 from datetime import datetime
-from django.db.models.query import QuerySet
+from django.db.models.query import Prefetch, QuerySet
 
 from drf_yasg.utils import swagger_auto_schema
 
@@ -14,6 +14,8 @@ from rest_framework import viewsets
 from .models import Schedule
 from .serializers import CalendarSerializer, ScheduleSerializer
 
+
+from companies.models import Contact, Company, company
 
 class CalendarsListView(ListAPIView):
     serializer_class = CalendarSerializer
