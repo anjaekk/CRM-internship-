@@ -39,5 +39,5 @@ class CalendarsListView(ListAPIView):
 
 class ScheduleViewSet(viewsets.ModelViewSet):
     queryset = Schedule.objects.all()
-    serializer_class = ScheduleSerializer(queryset, many=True)
+    serializer_class = ScheduleSerializer
     permission_classes = [IsAuthenticated]
