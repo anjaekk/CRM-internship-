@@ -4,69 +4,69 @@ import React, { useState } from 'react';
 import Datetime from 'react-datetime';
 
 // ATOMS
-import { Input, Label, Button, EditableTable } from '../../Components/Atoms';
-import { InputLabel } from '../../Components/Molecules';
-import { CommentBox } from '../../Components/Organisms';
+// import { Input, Label, Button } from '../../Components/Atoms';
+// import { InputLabel } from '../../Components/Molecules';
+// import { CommentBox } from '../../Components/Organisms';
 
 // STYLES
 import styled from 'styled-components';
 
-function ScheduleForm({ eventDetail, closeModal, onEventAdded, detailValue }) {
-  // const { id, title, start } = eventDetail;
-  const [title, setTitle] = useState('');
-  const [start, setStart] = useState(new Date());
+// function ScheduleForm({ eventDetail, closeModal, onEventAdded, detailValue }) {
+// const { id, title, start } = eventDetail;
 
-  const onSubmit = e => {
-    e.preventDefault();
+// const [title, setTitle] = useState('');
+// const [start, setStart] = useState(new Date());
 
-    onEventAdded({
-      title,
-      start,
-    });
+// const onSubmit = e => {
+//   e.preventDefault();
 
-    closeModal();
-  };
+//   onEventAdded({
+//     title,
+//     start,
+//   });
 
-  const handleInputChange = e => {
-    setTitle(e.target.value);
-  };
+//   closeModal();
+// };
 
-  const handleDatetime = date => {
-    setStart(date);
-  };
+// const handleInputChange = e => {
+//   setTitle(e.target.value);
+// };
 
-  return (
-    <ScheduleFormEle>
-      <ScheduleDetail>
-        <InputLabel type="text" name="title" value={eventDetail.title}>
-          Company Name
-        </InputLabel>
+// const handleDatetime = date => {
+//   setStart(date);
+// };
 
-        <InputLabel type="text" name="date" value={eventDetail.start}>
-          Date
-        </InputLabel>
+// return (
+// <ScheduleFormEle>
+//   <ScheduleDetail>
+//     <InputLabel type="text" name="title" value={eventDetail.title}>
+//       Company Name
+//     </InputLabel>
 
-        <InputLabel type="title" name="schedule_title">
-          Title
-        </InputLabel>
+//     <InputLabel type="text" name="date" value={eventDetail.start}>
+//       Date
+//     </InputLabel>
 
-        <CommentBox />
-      </ScheduleDetail>
-      {/* <EditableTable /> */}
-    </ScheduleFormEle>
-  );
-}
+//     <InputLabel type="title" name="schedule_title">
+//       Title
+//     </InputLabel>
 
-export default ScheduleForm;
+//     <CommentBox />
+//   </ScheduleDetail>
+// </ScheduleFormEle>
+//   );
+// }
 
-const ScheduleFormEle = styled.div`
-  ${({ theme }) => theme.flex('center', 'center', null)}
-  height: 100%;
-`;
+// export default ScheduleForm;
 
-const ScheduleDetail = styled.div`
-  ${({ theme }) => theme.flex('center', 'center', 'column')}
-`;
+// const ScheduleFormEle = styled.div`
+//   ${({ theme }) => theme.flex('center', 'center', null)}
+//   height: 100%;
+// `;
+
+// const ScheduleDetail = styled.div`
+//   ${({ theme }) => theme.flex('center', 'center', 'column')}
+// `;
 
 {
   /* <Form onSubmit={onSubmit}>

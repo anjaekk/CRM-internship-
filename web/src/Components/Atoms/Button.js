@@ -5,7 +5,7 @@ import React from 'react';
 // STYLES
 import styled, { css } from 'styled-components';
 
-function Button({ bg, children, onClick }) {
+function Button({ bg, children, onClick, onEventAdded }) {
   return (
     <ButtonEle onClick={onClick} bg={bg}>
       {children}
@@ -26,7 +26,15 @@ const buttonType = bg => {
         font-size: 1rem;
       `;
       break;
-    case 'stage':
+    case 'comment':
+      return css`
+        padding: 0.5rem;
+        background-color: rebeccapurple;
+        color: #fff;
+        font-size: 1rem;
+      `;
+      break;
+    case 'schedule':
       return css`
         width: 100%;
         padding: 1rem 2rem;
@@ -37,9 +45,8 @@ const buttonType = bg => {
       break;
     default:
       return css`
-        width: 100%;
-        padding: 1rem 2rem;
-        background-color: #ccc;
+        padding: 0.5rem;
+        background-color: rebeccapurple;
         color: #fff;
         font-size: 1rem;
       `;

@@ -10,7 +10,7 @@ function InputSubmit({ type, placeholder, name }) {
   return (
     <InputSubmitEle>
       <Input type={type} placeholder={placeholder} name={name} />
-      <Button>submit</Button>
+      <Button bg="comment">submit</Button>
     </InputSubmitEle>
   );
 }

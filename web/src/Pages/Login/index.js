@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { BASE_URL } from '../../config';
 
 // TEMPLETE
 import Templete from './Templetes/index';
@@ -20,7 +21,7 @@ function index() {
   const fetchLogin = () => {
     const { employee_number, password } = userInfo;
 
-    fetch(`http://192.168.0.149:8000/users/signin`, {
+    fetch(`http://10.58.56.124:8000/users/signin`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

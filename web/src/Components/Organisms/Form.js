@@ -16,8 +16,7 @@ function Form({ children, fetch }) {
 export default Form;
 
 const FormEle = styled.form`
-  width: 400px;
+  width: 800px;
   padding: 2rem;
-  border: 1px solid #ccc;
   border-radius: 5px;
 `;

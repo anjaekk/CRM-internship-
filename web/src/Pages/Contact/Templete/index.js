@@ -1,7 +1,8 @@
 import React from 'react';
 
-// ATOMS
-import { Span, Select, Input, EditableTable } from '../../../Components/Atoms';
+// ATOMS, Organisms
+import { Span, Select, Input } from '../../../Components/Atoms';
+import EditableTable from '../../../Components/Atoms/EditableTable';
 
 // STYLES
 import styled from 'styled-components';

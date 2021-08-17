@@ -3,9 +3,14 @@ import React from 'react';
 // LIBRARY
 import Modal from 'react-modal';
 
-function ModalComponent({ children, isOpen, onClose }) {
+function ModalComponent({ children, isOpen, onClose, onEventAdded }) {
   return (
-    <Modal isOpen={isOpen} onRequestClose={onClose} style={modalStyle}>
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onClose}
+      style={modalStyle}
+      onEventAdded={onEventAdded}
+    >
       {children}
     </Modal>
   );
@@ -24,7 +29,8 @@ const modalStyle = {
   },
   content: {
     position: 'absolute',
-    maxWidth: '500px',
+    // maxWidth: '500px',
+    width: '800px',
     height: '500px',
     margin: `auto`,
     top: '40px',

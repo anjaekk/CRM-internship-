@@ -6,7 +6,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
-function Calendar({ events, calendarRef, checkNewValue, checkDetailValue }) {
+function Calendar({ events, calendarRef, checkDetailValue, checkNewValue }) {
   return (
     <React.Fragment>
       <FullCalendar
@@ -23,13 +23,12 @@ function Calendar({ events, calendarRef, checkNewValue, checkDetailValue }) {
         }}
         events={events}
         // dateClick={e => console.log(e.dateStr)}
-        // eventClick={e => console.log(e.event.id)}
-        // dateClick={e => console.log(e.dateStr)}
         eventClick={checkDetailValue}
+        // eventClick={e => console.log(e.event.extendedProps)}
         nowIndicator
         ref={calendarRef}
         eventColor="rebeccapurple"
-        display="background"
+        // display="background"
       />
     </React.Fragment>
   );

@@ -11,7 +11,8 @@ function Input({ type, placeholder, name, onChange, value }) {
       placeholder={placeholder}
       autoComplete="off"
       name={name}
-      value={value ? value : null}
+      // value={value ? value : ''}
+      // value={value ?? null}
     />
   );
 }

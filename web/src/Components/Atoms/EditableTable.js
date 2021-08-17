@@ -11,7 +11,7 @@ const Styles = styled.div`
 
   table {
     border-spacing: 0;
-    border: 1px solid black;
+    border: 1px solid #ccc;
 
     tr {
       :last-child {
@@ -25,11 +25,16 @@ const Styles = styled.div`
     td {
       margin: 0;
       padding: 0.5rem;
-      border-bottom: 1px solid black;
-      border-right: 1px solid black;
+      border-bottom: 1px solid #ccc;
+      border-right: 1px solid #ccc;
 
       :last-child {
         border-right: 0;
+      }
+
+      input {
+        border: none;
+        outline: none;
       }
     }
   }
