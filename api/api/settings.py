@@ -40,11 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'drf_yasg',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
     'corsheaders',
+
     'users',
     'companies',
     'calendars',
@@ -182,7 +184,7 @@ REST_FRAMEWORK = {
         # 자동으로 json으로 바꿔줌
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
-    ]
+    ],
 }
 
 REST_USE_JWT = True
@@ -209,4 +211,5 @@ JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=30),
+    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
 }
