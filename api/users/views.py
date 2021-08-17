@@ -1,6 +1,7 @@
 from drf_yasg.utils import swagger_auto_schema
 
 from django.contrib.auth import get_user_model
+from rest_framework import response
 
 from rest_framework.views import APIView
 from rest_framework.generics import CreateAPIView
@@ -51,6 +52,7 @@ class SignInView(APIView):
         user = serializer.data
         response = {
             "message":"SUCCESS",
-            "employee_number": user
+            "employee_name":user["employee_number"],
+            "token":user["token"]
         }
         return Response(response, status = status.HTTP_200_OK)

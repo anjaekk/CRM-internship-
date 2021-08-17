@@ -14,7 +14,8 @@ from rest_framework import viewsets
 from .models import Schedule
 from .serializers import CalendarSerializer, ScheduleSerializer
 
-
+from rest_framework import status
+from rest_framework.response import Response
 from companies.models import Contact, Company, company
 
 class CalendarsListView(ListAPIView):
@@ -43,3 +44,9 @@ class ScheduleViewSet(viewsets.ModelViewSet):
     queryset = Schedule.objects.all()
     serializer_class = ScheduleSerializer
     permission_classes = [IsAuthenticated]
+
+    def create(self, request, pk):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.data
+        return Response(status = status.HTTP_200_OK)

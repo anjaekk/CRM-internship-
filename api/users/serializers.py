@@ -52,5 +52,9 @@ class UserSignInSerializer(serializers.Serializer):
             raise serializers.ValidationError(
         "User with given employee number and password does not exists"
         )
-        return {'employee_number': user, 'token': jwt_token}
+        user = {
+            "employee_number": user,
+            "token": jwt_token,
+            }
+        return user
 
