@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom';
 // TEMPLETE
 import Templete from './Templetes/index';
 
+import { BASE_URL } from '../../config';
+
 function index() {
   const history = useHistory();
   const [selectDepartment, setSelectDepartment] = useState(
@@ -42,25 +44,25 @@ function index() {
     const { employee_number, password, name, contact } = userInfo;
     const { department, position } = selectValue;
 
-    console.log(`"this is Signup Fetch" `, 'this is Signup Fetch');
-    // fetch(`http://10.58.6.179:8000/users/signup`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     employee_number,
-    //     password,
-    //     name,
-    //     phone_number: contact,
-    //     department,
-    //     job_title: position,
-    //   }),
-    // })
-    //   .then(res => res.json())
-    //   .then(res => console.log(`res`, res));
+    fetch(`${BASE_URL}/users/signup`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        employee_number,
+        password,
+        name,
+        phone_number: contact,
+        department,
+        job_title: position,
+      }),
+    })
+      .then(res => res.json())
+      .then(res => console.log(`res`, res));
   };
-
+  console.log(`selectValue`, selectValue);
+  console.log(`userInfo`, userInfo);
   return (
     <Templete
       fetchSignup={fetchSignup}
