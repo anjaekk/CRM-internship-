@@ -29,6 +29,9 @@ class ScheduleSerializer(ModelSerializer):
     companyEmployee_name = ReadOnlyField(source="contact.name")
     companyEmployee_contact = ReadOnlyField(source="contact.phone_number")
     employee = UserScheduleSerializer(source="userschedule_set", many=True)
+
     class Meta:
         model = Schedule
-        fields = ["company", "date", "title", "content", "companyEmployee_name", "companyEmployee_contact", "employee"]
+        fields = ["id", "company", "date", "title", "content", "companyEmployee_name", "companyEmployee_contact", "employee"]
+
+    # def create(self, validated_data)    
