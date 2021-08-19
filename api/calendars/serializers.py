@@ -1,9 +1,9 @@
-from django.db.models import fields
-from rest_framework import serializers
-from rest_framework.serializers import ModelSerializer, ReadOnlyField, Serializer
+from rest_framework.serializers import ModelSerializer, ReadOnlyField, SlugRelatedField
 
 from .models import Schedule, UserSchedule
-from companies.models import Contact
+from companies.models import Contact, Company
+from companies.serializers import ContactSheduleSerializer
+
 
 class CalendarSerializer(ModelSerializer):
     title = ReadOnlyField(source="company.name")
@@ -24,14 +24,18 @@ class UserScheduleSerializer(ModelSerializer):
 
 
 class ScheduleSerializer(ModelSerializer):
-    company = ReadOnlyField(source="company.name")
+    company = SlugRelatedField(slug_field="name", read_only=True)
     date = ReadOnlyField(source="schedule_date")
-    companyEmployee_name = ReadOnlyField(source="contact.name")
-    companyEmployee_contact = ReadOnlyField(source="contact.phone_number")
     employee = UserScheduleSerializer(source="userschedule_set", many=True)
+
+    def to_representation(self, instance):
+        response = super().to_representation(instance)
+        response['contact'] = ContactSheduleSerializer(instance.contact).data
+        return response
 
     class Meta:
         model = Schedule
-        fields = ["id", "company", "date", "title", "content", "companyEmployee_name", "companyEmployee_contact", "employee"]
+        fields = ["id", "company", "date", "title", "content", "contact", "employee"]
 
-    # def create(self, validated_data)    
+    # def create(self, validated_data):
+    #     schedule = Company.objects.get

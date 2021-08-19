@@ -8,3 +8,9 @@ class CompaniesSerializer(ModelSerializer):
     class Meta:
         model = Company
         fields = "__all__"
+
+class ContactSheduleSerializer(ModelSerializer):
+
+    class Meta:
+        model = Contact
+        fields = ['name', 'phone_number']

@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 
 from rest_framework.generics import ListAPIView
 from rest_framework.filters    import OrderingFilter
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework import viewsets
 
 from .models import Schedule
@@ -43,10 +43,8 @@ class CalendarsListView(ListAPIView):
 class ScheduleViewSet(viewsets.ModelViewSet):
     queryset = Schedule.objects.all()
     serializer_class = ScheduleSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
-    def create(self, request, pk):
-        serializer = self.serializer_class(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.data
-        return Response(status = status.HTTP_200_OK)
+
+    def create(self, serializer):
+        serializer.save(schedule = self.request.schedule)
