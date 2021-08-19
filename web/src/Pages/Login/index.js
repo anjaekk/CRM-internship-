@@ -21,7 +21,7 @@ function index() {
   const fetchLogin = () => {
     const { employee_number, password } = userInfo;
 
-    fetch(`http://10.58.56.124:8000/users/signin`, {
+    fetch(`${BASE_URL}/users/signin`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -32,11 +32,20 @@ function index() {
       }),
     })
       .then(res => res.json())
-      .then(res => console.log(`res`, res));
+      .then(res => {
+        console.log(`res`, res);
+        localStorage.setItem('token', res.token);
+        alert('로그인에 성공했습니다');
+        return goToCalendar();
+      });
   };
 
   const goToSignup = () => {
     history.push('/signup');
+  };
+
+  const goToCalendar = () => {
+    history.push('/calendar');
   };
 
   return (
