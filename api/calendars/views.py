@@ -48,23 +48,12 @@ class ScheduleViewSet(viewsets.ModelViewSet):
     permission_classes = [AllowAny]
 
 
-
-
-
-    # def post(self, request):
-    #     serializer = self.serializer_class(data=request.data)
-    #     serializer.is_valid(raise_exception = True)
-    #     serializer.save()
-    #     return Response({"message":"SUCCESS"}, status = status.HTTP_201_CREATED)
-
 class ScheduleCreateView(CreateAPIView):
     queryset = Schedule.objects.all()
     serializer_class = CreateScheduleSerializer
     permission_classes = [AllowAny]
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
-        print("===========================")
-        print(serializer)
         serializer.is_valid(raise_exception = True)
         serializer.save(schedule=request.data)
         return Response({"message":"SUCCESS"}, status = status.HTTP_201_CREATED)

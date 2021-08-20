@@ -51,57 +51,22 @@ class UserScheduleCreateSerializer(ModelSerializer):
         
 class CreateScheduleSerializer(ModelSerializer):
     company = serializers.CharField(source="company.name")
+    user_schedule = UserScheduleCreateSerializer(many=True, required=False)
     class Meta:
         model = Schedule
-        # fields = ["title", "content", "schedule_date", "company", "contact", "user"]
         exclude = ["contact"]
 
     def create(self, validated_data):
-        # contact_data = validated_data.pop("contact")
-        # contact = Contact.objects.get(name = contact_data["name"], phone_number = contact_data["phone_number"])
-
-        company_data = validated_data.pop('company')
+        company_data = validated_data.pop("company")
+        user_data = validated_data.pop("user_schedule")
         company = Company.objects.get(name=company_data["name"])
-
-        # contact = Contact.objects.get_or_create(contact = contact)
-
-        # for user in validated_data["employee"]:
-        #     if not User.objects.filter(
-        #         employee_number = user["employeeNumber"],
-        #         name = user["name"],
-        #         phone_number = user["contact"],
-        #     ).exists():
-        #         raise serializers.ValidationError("User does not exist")      
-        
-        
-
-        
-        user_list = []
-
-        # user_data = validated_data.pop('employee')
-
-        # for user in validated_data["employee"]:
-        #     employee_number = User.objects.get(employee_number = user["employeeNumber"]).id
-        #     user_list.append(employee_number)
-
-
-        # user = User.objects.get_or_create(
-        #     employee_number = validated_data["employee"]["employeeNumber"],
-        #     name = validated_data["employee"]["name"],
-        #     phone_number = validated_data["employee"]["contact"],
-        #     )
-        user_data = validated_data.pop('employee')
         schedule = Schedule.objects.create(
             schedule_date = validated_data["schedule_date"],
             title = validated_data["title"],
             content = validated_data["content"],
             company = company)
-        
         for user in user_data:
-            employee_number = User.objects.get(employee_number = user["employeeNumber"])
-            schedule.user_set.add(employee_number)
-        # # schedule = Schedule.objects.create(**validated_data)
-        # for user in user_data:
-        #     user_dict = dict(user)
-        #     UserSchedule.objects.create(schedule=schedule, user=user_dict["user"])
+            d=dict(user)
+            UserSchedule.objects.create(schedule=schedule, user=d["user"])
+
         return schedule
