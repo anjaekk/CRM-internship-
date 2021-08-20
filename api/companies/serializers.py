@@ -13,4 +13,14 @@ class ContactSheduleSerializer(ModelSerializer):
 
     class Meta:
         model = Contact
-        fields = ['name', 'phone_number']
+        fields = ["name", "phone_number"]
+
+class ContactCreateSerializer(ModelSerializer):
+
+    class Meta:
+        model = Contact
+        fields = "__all__"
+    
+    def create(self, validated_data):
+        contact = Contact.objects.create(**validated_data)
+        return contact

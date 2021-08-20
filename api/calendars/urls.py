@@ -1,21 +1,17 @@
 from django.urls import path
 
-from .views import CalendarsListView, ScheduleViewSet
+from .views import CalendarsListView, ScheduleViewSet, ScheduleCreateView
 
-
-schedule_list = ScheduleViewSet.as_view({
-    'get': 'list',
-    'post': 'create',
-})
 
 schedule_detail = ScheduleViewSet.as_view({
-    'get': 'retrieve',
-    'put': 'update',
-    'patch': 'partial_update',
-    'delete': 'destroy',
+    "get": "retrieve",
+    "put": "update",
+    "patch": "partial_update",
+    "delete": "destroy",
 })
 
 urlpatterns = [
-    path("", schedule_list, name="calendars"),
+    path("", CalendarsListView.as_view(), name="calendars"),
+    path("/schedule", ScheduleCreateView.as_view()),
     path("/<int:pk>", schedule_detail)
 ]

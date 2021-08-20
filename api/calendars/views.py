@@ -6,13 +6,15 @@ from drf_yasg.utils import swagger_auto_schema
 from django.db.models   import Q
 from django.shortcuts import get_object_or_404
 
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.filters    import OrderingFilter
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework import viewsets
 
+from calendars.models import schedule
+
 from .models import Schedule
-from .serializers import CalendarSerializer, ScheduleSerializer
+from .serializers import CalendarSerializer, ScheduleSerializer, CreateScheduleSerializer
 
 from rest_framework import status
 from rest_framework.response import Response
@@ -46,5 +48,23 @@ class ScheduleViewSet(viewsets.ModelViewSet):
     permission_classes = [AllowAny]
 
 
-    def create(self, serializer):
-        serializer.save(schedule = self.request.schedule)
+
+
+
+    # def post(self, request):
+    #     serializer = self.serializer_class(data=request.data)
+    #     serializer.is_valid(raise_exception = True)
+    #     serializer.save()
+    #     return Response({"message":"SUCCESS"}, status = status.HTTP_201_CREATED)
+
+class ScheduleCreateView(CreateAPIView):
+    queryset = Schedule.objects.all()
+    serializer_class = CreateScheduleSerializer
+    permission_classes = [AllowAny]
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        print("===========================")
+        print(serializer)
+        serializer.is_valid(raise_exception = True)
+        serializer.save(schedule=request.data)
+        return Response({"message":"SUCCESS"}, status = status.HTTP_201_CREATED)
