@@ -52,6 +52,14 @@ class ScheduleCreateView(CreateAPIView):
     queryset = Schedule.objects.all()
     serializer_class = CreateScheduleSerializer
     permission_classes = [AllowAny]
+    @swagger_auto_schema(
+        request_body=CreateScheduleSerializer,
+        response={
+            "200":"SUCCESS",
+            "400":"BAD_REQUEST",
+            "401":"UNAUTHORIZED_USER"
+        },
+        operation_id="스케줄 생성")
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception = True)

@@ -60,13 +60,22 @@ class CreateScheduleSerializer(ModelSerializer):
         company_data = validated_data.pop("company")
         user_data = validated_data.pop("user_schedule")
         company = Company.objects.get(name=company_data["name"])
+
         schedule = Schedule.objects.create(
             schedule_date = validated_data["schedule_date"],
             title = validated_data["title"],
             content = validated_data["content"],
             company = company)
+        print(company_data)
+        usera = validated_data.get('user_schedule')
+        print(usera)
+        print(user_data)
         for user in user_data:
-            d=dict(user)
-            UserSchedule.objects.create(schedule=schedule, user=d["user"])
+            user_dict = dict(user)
+            #print(User.objects.get(id=).id)
+            print("==============================")
+            print(user_dict)
+            print(user_dict["user"])
+            UserSchedule.objects.create(schedule=schedule, user=user_dict["user"])
 
         return schedule
