@@ -52,7 +52,7 @@ class SignInView(APIView):
         user = serializer.data
         response = {
             "message":"SUCCESS",
-            "employee_name":user["employee_number"],
+            "employee_name":User.objects.get(employee_number = user["employee_number"]).name,
             "token":user["token"]
         }
         return Response(response, status = status.HTTP_200_OK)
