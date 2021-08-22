@@ -6,13 +6,15 @@ from drf_yasg.utils import swagger_auto_schema
 from django.db.models   import Q
 from django.shortcuts import get_object_or_404
 
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.filters    import OrderingFilter
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework import viewsets
 
+from calendars.models import schedule
+
 from .models import Schedule
-from .serializers import CalendarSerializer, ScheduleSerializer
+from .serializers import CalendarSerializer, ScheduleSerializer, CreateScheduleSerializer
 
 from rest_framework import status
 from rest_framework.response import Response
@@ -43,10 +45,23 @@ class CalendarsListView(ListAPIView):
 class ScheduleViewSet(viewsets.ModelViewSet):
     queryset = Schedule.objects.all()
     serializer_class = ScheduleSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
-    def create(self, request, pk):
+
+class ScheduleCreateView(CreateAPIView):
+    queryset = Schedule.objects.all()
+    serializer_class = CreateScheduleSerializer
+    permission_classes = [AllowAny]
+    @swagger_auto_schema(
+        request_body=CreateScheduleSerializer,
+        response={
+            "200":"SUCCESS",
+            "400":"BAD_REQUEST",
+            "401":"UNAUTHORIZED_USER"
+        },
+        operation_id="스케줄 생성")
+    def post(self, request):
         serializer = self.serializer_class(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.data
-        return Response(status = status.HTTP_200_OK)
+        serializer.is_valid(raise_exception = True)
+        serializer.save(schedule=request.data)
+        return Response({"message":"SUCCESS"}, status = status.HTTP_201_CREATED)

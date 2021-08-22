@@ -1,9 +1,14 @@
 from django.db.models import fields
 from rest_framework import serializers
-from rest_framework.serializers import ModelSerializer, ReadOnlyField, Serializer
+from rest_framework.serializers import ModelSerializer, ReadOnlyField, SlugRelatedField
+
+from calendars.models import user_schedule
 
 from .models import Schedule, UserSchedule
-from companies.models import Contact
+from companies.models import Contact, Company
+from companies.serializers import ContactSheduleSerializer
+from users.models import User
+
 
 class CalendarSerializer(ModelSerializer):
     title = ReadOnlyField(source="company.name")
@@ -24,14 +29,53 @@ class UserScheduleSerializer(ModelSerializer):
 
 
 class ScheduleSerializer(ModelSerializer):
-    company = ReadOnlyField(source="company.name")
+    company = SlugRelatedField(slug_field="name", read_only=True)
     date = ReadOnlyField(source="schedule_date")
-    companyEmployee_name = ReadOnlyField(source="contact.name")
-    companyEmployee_contact = ReadOnlyField(source="contact.phone_number")
     employee = UserScheduleSerializer(source="userschedule_set", many=True)
 
+    def to_representation(self, instance):
+        response = super().to_representation(instance)
+        response['contact'] = ContactSheduleSerializer(instance.contact).data
+        return response
+        
     class Meta:
         model = Schedule
-        fields = ["id", "company", "date", "title", "content", "companyEmployee_name", "companyEmployee_contact", "employee"]
+        fields = ["id", "company", "date", "title", "content", "contact", "employee"]
 
-    # def create(self, validated_data)    
+
+
+class UserScheduleCreateSerializer(ModelSerializer):
+    class Meta:
+        model = UserSchedule
+        fields = ["user"]
+        
+class CreateScheduleSerializer(ModelSerializer):
+    company = serializers.CharField(source="company.name")
+    user_schedule = UserScheduleCreateSerializer(many=True, required=False)
+    class Meta:
+        model = Schedule
+        exclude = ["contact"]
+
+    def create(self, validated_data):
+        company_data = validated_data.pop("company")
+        user_data = validated_data.pop("user_schedule")
+        company = Company.objects.get(name=company_data["name"])
+
+        schedule = Schedule.objects.create(
+            schedule_date = validated_data["schedule_date"],
+            title = validated_data["title"],
+            content = validated_data["content"],
+            company = company)
+        print(company_data)
+        usera = validated_data.get('user_schedule')
+        print(usera)
+        print(user_data)
+        for user in user_data:
+            user_dict = dict(user)
+            #print(User.objects.get(id=).id)
+            print("==============================")
+            print(user_dict)
+            print(user_dict["user"])
+            UserSchedule.objects.create(schedule=schedule, user=user_dict["user"])
+
+        return schedule
