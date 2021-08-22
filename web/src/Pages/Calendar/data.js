@@ -20,20 +20,9 @@ export const name_data = [
   },
 ];
 
-export const events = [
+export const empty_name_data = [
   {
-    id: 1,
-    title: 'company1',
-    start: '2021-08-14',
-    subject: 'hihi',
+    employee_number: null,
+    name: '',
   },
-  {
-    id: 2,
-    title: 'company2',
-    start: '2021-08-16',
-    subject: 'hihi',
-  },
-  { id: 3, title: 'company3', start: '2021-08-17', subject: 'hihi' },
-  { id: 4, title: 'company4', start: '2021-08-17', subject: 'hihi' },
-  { id: 5, title: 'company5', start: '2021-08-17', subject: 'hihi' },
 ];

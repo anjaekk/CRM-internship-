@@ -18,39 +18,56 @@ function index() {
     setUserInfo({ ...userInfo, [name]: value });
   };
 
-  const fetchLogin = () => {
-    const { employee_number, password } = userInfo;
-
-    fetch(`${BASE_URL}/users/signin`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        employee_number,
-        password,
-      }),
-    })
-      .then(res => res.json())
-      .then(res => {
-        console.log(`res`, res);
-        localStorage.setItem('token', res.token);
-        alert('로그인에 성공했습니다');
-        return goToCalendar();
-      });
-  };
-
   const goToSignup = () => {
     history.push('/signup');
   };
 
-  const goToCalendar = () => {
-    history.push('/calendar');
+  const checkValue = () => {
+    const { employee_number, password } = userInfo;
+
+    if (employee_number.length === 0) {
+      alert('employee number must be at least 8 digits');
+    } else if (password.length < 8) {
+      alert('employee number must be at least 8 digits');
+    } else {
+      fetchLogin();
+    }
+  };
+
+  const fetchLogin = async () => {
+    const { employee_number, password } = userInfo;
+
+    try {
+      const res = await axios.post(
+        `${BASE_URL}/users/signin`,
+        {
+          employee_number,
+          password,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      if (res.status === 200) {
+        localStorage.setItem('token', res.data.token);
+        history.push('/calendar');
+      }
+    } catch (err) {
+      switch (err.response.status) {
+        case 401:
+          alert('You do not have permission to access.');
+        default:
+          alert('Please check the employee number and password.');
+          break;
+      }
+    }
   };
 
   return (
     <Templete
-      fetchLogin={fetchLogin}
+      fetchLogin={checkValue}
       onChange={onChangeUserValue}
       goToSignup={goToSignup}
     />
@@ -58,22 +75,3 @@ function index() {
 }
 
 export default index;
-
-// {
-//   method: 'POST',
-//   headers: {
-//     'Content-Type': 'application/json',
-//   },
-//   body: JSON.stringify({
-//     employee_number,
-//     password,
-//   }),
-// }
-
-// axios({
-
-// })
-
-// .then(res => res.json())
-// .then(res => console.log(`res`, res))
-// .catch(err => console.log(`err`, err));

@@ -15,21 +15,25 @@ import styled from 'styled-components';
 function index({
   eventDetail,
   name_data,
-  start,
   column_name,
+  start,
   events,
   modalOpen,
+  openModal,
+  closeModal,
   newForm,
   handleStarttime,
-  closeModal,
-  openModal,
   handleInputChange,
   onSubmit,
   checkDetailValue,
   checkNewValue,
   onEventAdded,
   calendarRef,
+  getYearMonth,
+  empty_name_data,
 }) {
+  console.log(`name_data`, name_data);
+  const { title, content, company } = eventDetail;
   return (
     <React.Fragment>
       <Modal
@@ -44,8 +48,8 @@ function index({
               <LeftBox>
                 <InputLabel
                   type="text"
-                  name="title"
-                  vlaue={eventDetail.title}
+                  name="company"
+                  vlaue=""
                   onChange={handleInputChange}
                 >
                   Company name
@@ -62,45 +66,54 @@ function index({
                 </DatetimeBox>
                 <InputLabel
                   type="text"
-                  name="subject"
-                  value={eventDetail.subject}
+                  name="title"
+                  value=""
                   onChange={handleInputChange}
                 >
                   title
                 </InputLabel>
-                <CommentBox size="lg" />
+                <InputLabel
+                  type="text"
+                  name="content"
+                  value=""
+                  onChange={handleInputChange}
+                >
+                  content
+                </InputLabel>
+                <CommentBox size="lg"></CommentBox>
               </LeftBox>
               <RightBox>
                 <div>
                   <Span size="sm">Employee</Span>
-                  <EditableTable column={column_name} data={name_data} />
+                  <EditableTable column={column_name} data={empty_name_data} />
                 </div>
                 <div>
-                  <Button bg="schedule" onClick={onSubmit}>
-                    Add Event
-                  </Button>
+                  <Button bg="schedule">Add Event</Button>
                 </div>
               </RightBox>
             </ScheduleForm>
           ) : (
             <ScheduleForm>
               <ScheduleDetail>
-                <InputLabel type="text" name="title" value={eventDetail.title}>
+                <InputLabel type="text" name="title" value={company}>
                   Company Name
                 </InputLabel>
 
-                <InputLabel type="text" name="date" value={eventDetail.start}>
+                <InputLabel type="text" name="date" value={start}>
                   Date
                 </InputLabel>
 
-                <InputLabel
-                  type="text"
-                  name="subject"
-                  value={eventDetail.subject}
-                >
+                <InputLabel type="text" name="title" value={title}>
                   Title
                 </InputLabel>
-                <CommentBox size="lg" />
+                <InputLabel type="text" name="content" value={content}>
+                  Content
+                </InputLabel>
+                <CommentBox size="lg">
+                  <li>first metting</li>
+                  <li>second metting</li>
+                  <li>thrid metting</li>
+                </CommentBox>
               </ScheduleDetail>
               <RightBox>
                 <div>
@@ -108,9 +121,7 @@ function index({
                   <EditableTable column={column_name} data={name_data} />
                 </div>
                 <div>
-                  <Button onClick={onEventAdded} bg="schedule">
-                    Revised
-                  </Button>
+                  <Button bg="schedule">Revised</Button>
                 </div>
               </RightBox>
             </ScheduleForm>
@@ -118,11 +129,13 @@ function index({
         </Form>
       </Modal>
       <Calendar
+        getYearMonth={getYearMonth}
         events={events}
         openModal={openModal}
         checkDetailValue={checkDetailValue}
         checkNewValue={checkNewValue}
         calendarRef={calendarRef}
+        // datesSet={date => handleDatesSet(date)}
       />
     </React.Fragment>
   );
@@ -156,7 +169,7 @@ const DatetimeBox = styled.div`
 
     .datetime {
       display: flex;
-      width: 95%;
+      width: 100%;
       justify-content: flex-start;
       margin: 0 auto;
       margin-top: 5px;

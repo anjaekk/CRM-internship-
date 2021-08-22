@@ -32,11 +32,11 @@ function index({ goToSignup, onChange, fetchLogin }) {
               Password
             </InputLabel>
           </AdminInputBox>
-          <Button onClick={goToSignup} bg="admin">
-            GO TO SIGNUP
-          </Button>
           <Button bg="admin" fetch={fetchLogin}>
             LOGIN
+          </Button>
+          <Button onClick={goToSignup} bg="admin">
+            GO TO SIGNUP
           </Button>
         </Container>
       </Form>

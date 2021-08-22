@@ -26,7 +26,11 @@ function Templete({
         <EditableTable column={column_product} data={product_data} />
       </TableFlex>
       <EditableTable column={column_employee} data={employee_data} />
-      <CommentBox size="mid" />
+      <CommentBox size="mid">
+        <li>first metting</li>
+        <li>second metting</li>
+        <li>thrid metting</li>
+      </CommentBox>
     </TempleteEle>
   );
 }

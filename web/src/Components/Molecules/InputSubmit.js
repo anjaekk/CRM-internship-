@@ -19,4 +19,5 @@ export default InputSubmit;
 
 const InputSubmitEle = styled.div`
   ${({ theme }) => theme.flex('center', 'center', null)}
+  width: 100%;
 `;

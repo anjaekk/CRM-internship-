@@ -11,8 +11,7 @@ function Input({ type, placeholder, name, onChange, value }) {
       placeholder={placeholder}
       autoComplete="off"
       name={name}
-      // value={value ? value : ''}
-      // value={value ?? null}
+      value={value}
     />
   );
 }
@@ -21,7 +20,7 @@ export default Input;
 
 const InputEle = styled.input`
   ${({ theme }) => theme.flex('center', 'center', null)}
-  width: 95%;
+  width: 100%;
   margin-top: 5px;
   padding: 0.5em 0 0.5em 1rem;
   color: #696969;
