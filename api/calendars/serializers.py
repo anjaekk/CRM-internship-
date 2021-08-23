@@ -1,6 +1,6 @@
 from django.db.models import fields
 from rest_framework import serializers
-from rest_framework.serializers import ModelSerializer, ReadOnlyField, SlugRelatedField
+from rest_framework.serializers import ModelSerializer, ReadOnlyField, Serializer, SlugRelatedField
 
 from calendars.models import user_schedule
 
@@ -8,6 +8,7 @@ from .models import Schedule, UserSchedule
 from companies.models import Contact, Company
 from companies.serializers import ContactSheduleSerializer
 from users.models import User
+from users.serializers import UserSerializer
 
 
 class CalendarSerializer(ModelSerializer):
@@ -49,28 +50,26 @@ class UserScheduleCreateSerializer(ModelSerializer):
         model = UserSchedule
         fields = ["user"]
         
+
 class CreateScheduleSerializer(ModelSerializer):
     company = serializers.CharField(source="company.name")
-    user_schedule = UserScheduleCreateSerializer(many=True, required=False)
+    employee = UserScheduleCreateSerializer(many=True, required=False)
     class Meta:
         model = Schedule
         exclude = ["contact"]
 
     def create(self, validated_data):
         company_data = validated_data.pop("company")
-        user_data = validated_data.pop("user_schedule")
-        company = Company.objects.get(name=company_data["name"])
+        user_data = validated_data.pop("employee")
+        company, created = Company.objects.get_or_create(name=company_data["name"])
 
         schedule = Schedule.objects.create(
             schedule_date = validated_data["schedule_date"],
             title = validated_data["title"],
             content = validated_data["content"],
             company = company)
-        print(company_data)
+
         for user in user_data:
-            #print(User.objects.get(id=).id)
-            print("==============================")
-            print(user["user"])
             UserSchedule.objects.create(schedule=schedule, user=user["user"])
 
         return schedule
