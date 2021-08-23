@@ -68,7 +68,6 @@ class CreateScheduleSerializer(ModelSerializer):
             company = company)
         print(company_data)
         for user in user_data:
-            print(user["user"])
             #print(User.objects.get(id=).id)
             print("==============================")
             print(user["user"])
