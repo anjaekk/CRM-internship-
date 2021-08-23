@@ -6,14 +6,12 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
-// import { AiOutlineArrowLeft } from 'react';
-
 function Calendar({
   events,
   calendarRef,
-  checkDetailValue,
   checkNewValue,
   getYearMonth,
+  getDetailedSchedule,
 }) {
   return (
     <React.Fragment>
@@ -33,13 +31,10 @@ function Calendar({
           },
         }}
         events={events}
-        // dateClick={e => console.log(e.dateStr)}
-        eventClick={checkDetailValue}
-        // eventClick={e => console.log(e.event.extendedProps)}
+        eventClick={getDetailedSchedule}
         nowIndicator
         ref={calendarRef}
         eventColor="rebeccapurple"
-        // display="background"
       />
     </React.Fragment>
   );

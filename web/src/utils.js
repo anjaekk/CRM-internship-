@@ -14,38 +14,14 @@ export function validationPassword(password) {
   return PASSWORD_REGES.test(password);
 }
 
-export const validationFunction = {
+export const validationFunction_SIGNUP = {
   employee_number: validationEmployeeNumber,
   name: validationName,
   contact: validationPhoneNumber,
   password: validationPassword,
 };
 
-// import { BASE_URL } from './config';
-
-// export const customFatch = (
-//   endpoint,
-//   options = {},
-//   { onSuccess, onFail } = {}
-// ) => {
-//   const token = localStorage.getItem('token');
-//   const opts = {
-//     method: 'GET',
-//     headers: { Authorization: `Bearer ${token}` },
-//     ...options,
-//   };
-
-//   return fetch(BASE_URL + endpoint, opts)
-//     .then(res => res.json())
-//     .then(res => onSuccess && onSuccess(res))
-//     .catch(err => onFail && onFail(err));
-// };
-
-// export const apap = (methodd, url, data) => {
-//   try {
-//     const response = await methodd(url, config, data);
-//     return response;
-//   } catch (err) {
-//     console.log(`err`, err);
-//   }
-// };
+export const validationFunction_LOGIN = {
+  employee_number: validationEmployeeNumber,
+  password: validationPassword,
+};

@@ -23,7 +23,7 @@ function Nav() {
               <NavMenuLink to="/salesdetail">Sales Detail</NavMenuLink>
             </NavMenuList>
             <NavMenuList>
-              <NavMenuLink to="/calendar">Performence</NavMenuLink>
+              <NavMenuLink to="/performance">Performence</NavMenuLink>
             </NavMenuList>
           </NavMenu>
         </NavElement>

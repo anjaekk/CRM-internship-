@@ -7,7 +7,7 @@ import Templete from './Templetes/index';
 
 // CONFIG
 import { BASE_URL } from '../../config';
-import { validationFunction } from '../../utils';
+import { validationFunction_SIGNUP } from '../../utils';
 
 // DATAS
 import { selectList_department, selectList_position } from './data';
@@ -29,9 +29,10 @@ function index() {
     contact: '',
   });
 
+  // FUNCTIONS
   const isAllInputValid = () => {
     return Object.entries(userInfo).every(([key, value]) => {
-      return validationFunction[key](value);
+      return validationFunction_SIGNUP[key](value);
     });
   };
 
@@ -51,62 +52,11 @@ function index() {
     history.push('/');
   };
 
-  const a = () => {
-    const { employee_number, password, name, contact } = userInfo;
-    const { department, position } = selectValue;
-
-    fetch(`${BASE_URL}/users/signup`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        employee_number,
-        password,
-        name,
-        phone_number: contact,
-        department,
-        job_title: position,
-      }),
-    })
-      .then(res => res.json())
-      .then(res => console.log(`res`, res));
-  };
-
   const fetchSignup = async () => {
     const { employee_number, password, name, contact } = userInfo;
     const { department, position } = selectValue;
 
-    // try {
-    //   const res = await axios.post(
-    //     `${BASE_URL}/users/signup`,
-    //     {
-    //       employee_number,
-    //       password,
-    //       name,
-    //       phone_number: contact,
-    //       department,
-    //       job_title: position,
-    //     },
-    //     {
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //       },
-    //     }
-    //   );
-    //   if (res) {
-    //     alert(
-    //       'You have successfully registered as a member. Go to the login page.'
-    //     );
-    //     goToLogin();
-    //   }
-    // } catch (err) {
-    //   console.log(`err.response`, err);
-    // }
-
     if (isAllInputValid() && department && position) {
-      console.log(`userInfo`, userInfo);
-      console.log(`selectValue`, selectValue);
       try {
         const res = await axios.post(
           `${BASE_URL}/users/signup`,
@@ -134,7 +84,7 @@ function index() {
         console.log(`err.response`, err.response);
       }
     } else {
-      alert('양식을 다시 확인해주세요');
+      alert('Please check your form again');
     }
   };
 
