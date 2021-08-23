@@ -10,7 +10,7 @@ import Signup from './Pages/Signup/index';
 import Calendar from './Pages/Calendar/index';
 import Contact from './Pages/Contact/index';
 import SalesDetail from './Pages/SalesDetail/index';
-// import Stage from './Pages/Stage/index';
+import Performance from './Pages/Performence/index';
 
 function routes() {
   return (
@@ -23,7 +23,7 @@ function routes() {
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/salesdetail" component={SalesDetail} />
         <Route exact path="/salesdetail/:id" component={SalesDetail} />
-        {/* <Route exact path="/" component={Stage} /> */}
+        <Route exact path="/performance" component={Performance} />
       </Switch>
     </Router>
   );

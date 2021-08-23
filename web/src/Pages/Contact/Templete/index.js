@@ -1,6 +1,6 @@
 import React from 'react';
 
-// ATOMS, Organisms
+// ATOMS, ORGANISMS
 import { Span, Select, Input } from '../../../Components/Atoms';
 import EditableTable from '../../../Components/Atoms/EditableTable';
 
