@@ -67,10 +67,10 @@ function index({
               selectLists={selectPosition}
             />
           </AdminSelectBox>
+          <Button bg="admin">SIGNUP</Button>
           <Button onClick={goToLogin} bg="admin">
             GO TO LOGIN
           </Button>
-          <Button bg="admin">SIGNUP</Button>
         </Container>
       </Form>
     </Templete>

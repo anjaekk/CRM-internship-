@@ -3,14 +3,9 @@ import React from 'react';
 // LIBRARY
 import Modal from 'react-modal';
 
-function ModalComponent({ children, isOpen, onClose, onEventAdded }) {
+function ModalComponent({ children, isOpen, onClose }) {
   return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={onClose}
-      style={modalStyle}
-      onEventAdded={onEventAdded}
-    >
+    <Modal isOpen={isOpen} onRequestClose={onClose} style={modalStyle}>
       {children}
     </Modal>
   );

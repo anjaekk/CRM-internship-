@@ -7,17 +7,14 @@ import { InputSubmit } from '../../Components/Molecules';
 // STYLES
 import styled from 'styled-components';
 
-function CommentBox({ size }) {
+function CommentBox({ size, children }) {
   return (
     <CommentBoxEle size={size}>
-      <Span size="sm">Comments</Span>
-      <CommnetWrap>
-        <li>First Meeting</li>
-        <li>Second Meeting</li>
-        <li>Third Meeting</li>
-        <li>Fourth Meeting</li>
-        <li>Fifth Meeting</li>
-      </CommnetWrap>
+      <Top>
+        <Span size="sm">Comments</Span>
+        <CommnetWrap>{children}</CommnetWrap>
+      </Top>
+
       <InputSubmit
         type="text"
         placeholder="enter your comments"
@@ -46,15 +43,24 @@ const boxSize = size => {
 };
 
 const CommentBoxEle = styled.div`
+  ${({ theme }) => theme.flex('space-between', 'center', 'column')}
   width: ${({ size }) => boxSize(size)};
+  height: 300px;
   border: 1px solid #ccc;
   margin: 1rem 0;
 `;
 
+const Top = styled.div`
+  width: 100%;
+`;
+
 const CommnetWrap = styled.ul`
+  width: 100%;
   border-top: 1px solid #ccc;
+  padding-left: 2rem;
 
   li {
     padding-top: 0.5rem;
+    list-style: circle;
   }
 `;

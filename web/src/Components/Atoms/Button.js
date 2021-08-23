@@ -5,7 +5,7 @@ import React from 'react';
 // STYLES
 import styled, { css } from 'styled-components';
 
-function Button({ bg, children, onClick, onEventAdded }) {
+function Button({ bg, children, onClick }) {
   return (
     <ButtonEle onClick={onClick} bg={bg}>
       {children}
@@ -24,6 +24,10 @@ const buttonType = bg => {
         background-color: #ccc;
         color: #fff;
         font-size: 1rem;
+
+        &:hover {
+          background-color: rebeccapurple;
+        }
       `;
       break;
     case 'comment':
@@ -38,7 +42,7 @@ const buttonType = bg => {
       return css`
         width: 100%;
         padding: 1rem 2rem;
-        background-color: #ccc;
+        background-color: rebeccapurple;
         color: #fff;
         font-size: 1rem;
       `;
@@ -60,8 +64,4 @@ const ButtonEle = styled.button`
   border: 1px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
-
-  &:hover {
-    background-color: rebeccapurple;
-  }
 `;

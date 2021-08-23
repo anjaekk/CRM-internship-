@@ -6,10 +6,21 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
-function Calendar({ events, calendarRef, checkDetailValue, checkNewValue }) {
+// import { AiOutlineArrowLeft } from 'react';
+
+function Calendar({
+  events,
+  calendarRef,
+  checkDetailValue,
+  checkNewValue,
+  getYearMonth,
+}) {
   return (
     <React.Fragment>
       <FullCalendar
+        datesSet={arg => {
+          getYearMonth(arg.view.currentStart);
+        }}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
         headerToolbar={{
