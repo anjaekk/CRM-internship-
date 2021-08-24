@@ -5,10 +5,12 @@ from django.contrib.auth.models import update_last_login
 from rest_framework import serializers 
 from rest_framework_jwt.settings import api_settings
 
+
 User = get_user_model()
 
 
 class UserSignupSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = User
         fields = "__all__"
@@ -28,6 +30,7 @@ JWT_ENCODE_HANDLER = api_settings.JWT_ENCODE_HANDLER
 
 
 class UserSignInSerializer(serializers.Serializer):
+    
     class Meta:
         model = User
         fields = ("employee_number", "password", "name")
@@ -40,18 +43,15 @@ class UserSignInSerializer(serializers.Serializer):
     def validate(self, data):
         user = authenticate(**data)
         if not user:
-            raise serializers.ValidationError(
-        "A user with this employee number and password is not found."
-        )
+            raise serializers.ValidationError("A user with this employee number and password is not found.")
+
         try:
             payload = JWT_PAYLOAD_HANDLER(user)
             jwt_token = JWT_ENCODE_HANDLER(payload)
             update_last_login(None, user)
 
         except User.DoesNotExist:
-            raise serializers.ValidationError(
-        "User with given employee number and password does not exists"
-        )
+            raise serializers.ValidationError("User with given employee number and password does not exists")
         user = {
             "employee_number": user,
             "token": jwt_token,

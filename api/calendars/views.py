@@ -44,16 +44,17 @@ class CalendarsListView(ListAPIView):
             queryset = queryset.filter(Q(schedule_date__year=year)& Q(schedule_date__month=month))
             return queryset
 
+
 class ScheduleViewSet(viewsets.ModelViewSet):
     queryset = Schedule.objects.all()
     serializer_class = ScheduleSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
 
 class ScheduleCreateView(CreateAPIView):
     queryset = Schedule.objects.all()
     serializer_class = CreateScheduleSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
 
     @swagger_auto_schema(

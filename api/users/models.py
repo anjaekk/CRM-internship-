@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
 
+
 DEPARTMENT = (
     (0, "임원"),
     (1, "경영지원"),

@@ -1,21 +1,17 @@
 from datetime import datetime
 
-from django.db.models import fields
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer, ReadOnlyField, Serializer, SlugRelatedField
 
-from calendars.models import user_schedule
-
 from .models import Schedule, UserSchedule
-from companies.models import Contact, Company
+from companies.models import Company
 from companies.serializers import ContactSheduleSerializer
-from users.models import User
-from users.serializers import UserSerializer
 
 
 class CalendarSerializer(ModelSerializer):
     title = ReadOnlyField(source="company.name")
     start = ReadOnlyField(source="schedule_date")
+    
     class Meta:
         model = Schedule
         fields = ["id", "title", "start"]
