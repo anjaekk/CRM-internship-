@@ -24,11 +24,11 @@ const data = [
     Sales: 4000,
   },
   {
-    name: 'July',
+    name: 'Chair',
     Sales: 800,
   },
   {
-    name: 'October',
+    name: 'Closet',
     Sales: 1500,
   },
 ];
@@ -50,7 +50,11 @@ function index() {
         <CartesianGrid strokeDasharray="1" />
         <XAxis dataKey="name" />
         <YAxis />
-        <Tooltip />
+        <Tooltip
+          contentStyle={{ width: '200px' }}
+          labelStyle={{ fontSize: '15px', paddingRight: '0.5em' }}
+          wrapperStyle={{ fontSize: '15px' }}
+        />
         <Legend />
         <Line
           type="monotone"

@@ -1,6 +1,9 @@
 import React from 'react';
 
+// TEMPLETE
 import Templete from './Templete';
+
+// DATA
 import {
   column_product,
   column_prioiry,

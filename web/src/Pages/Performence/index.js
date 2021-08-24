@@ -11,6 +11,7 @@ function index() {
     setHeight(confettiRef.current.clientHeight);
     setWidth(confettiRef.current.clientWidth);
   }, []);
+
   return <Templete confettiRef={confettiRef} width={width} height={height} />;
 }
 

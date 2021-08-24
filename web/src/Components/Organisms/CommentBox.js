@@ -14,7 +14,6 @@ function CommentBox({ size, children }) {
         <Span size="sm">Comments</Span>
         <CommnetWrap>{children}</CommnetWrap>
       </Top>
-
       <InputSubmit
         type="text"
         placeholder="enter your comments"

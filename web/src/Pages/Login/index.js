@@ -5,9 +5,9 @@ import axios from 'axios';
 // TEMPLETE
 import Templete from './Templetes/index';
 
-// CONFIG & UTILS
+// CONFIG, VALIDATION
 import { BASE_URL } from '../../config';
-import { validationFunction_LOGIN } from '../../utils';
+import { validationFunction_LOGIN } from '../../validation';
 
 function index() {
   const history = useHistory();

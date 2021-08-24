@@ -6,7 +6,6 @@ import styled from 'styled-components';
 function Form({ children, fetch }) {
   const onSubmit = e => {
     e.preventDefault();
-
     fetch();
   };
 

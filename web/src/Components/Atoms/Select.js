@@ -29,7 +29,7 @@ const handleSize = size => {
     case 'lg':
       return `1rem`;
     case 'mid':
-      return `0.5rem`;
+      return `0.4rem`;
     case 'sm':
       return `0.2rem`;
   }

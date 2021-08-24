@@ -87,7 +87,6 @@ function index() {
 
   const newSchedule = async () => {
     const { company, title, content } = eventDetail;
-    console.log(`company`, company);
 
     try {
       const token = localStorage.getItem('token');

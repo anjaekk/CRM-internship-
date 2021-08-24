@@ -5,11 +5,11 @@ import axios from 'axios';
 // TEMPLETE
 import Templete from './Templetes/index';
 
-// CONFIG
+// CONFIG, VALIDATION
 import { BASE_URL } from '../../config';
-import { validationFunction_SIGNUP } from '../../utils';
+import { validationFunction_SIGNUP } from '../../validation';
 
-// DATAS
+// DATA
 import { selectList_department, selectList_position } from './data';
 
 function index() {

@@ -1,7 +1,7 @@
 export const column_product = [
   {
-    Header: 'Id',
-    accessor: 'id',
+    Header: 'No',
+    accessor: 'number',
   },
   {
     Header: 'Product',
@@ -19,16 +19,16 @@ export const column_product = [
 
 export const product_data = [
   {
-    id: 0,
-    product: 0,
-    stage: 'level2',
-    progress: '10%',
+    number: 0,
+    product: 'Desk 0281',
+    stage: 'Stage 4',
+    progress: '87%',
   },
   {
-    id: 1,
-    product: 0,
-    stage: 'level1',
-    progress: '10%',
+    number: 1,
+    product: 'Sofa 110022',
+    stage: 'Stage 2',
+    progress: '35%',
   },
 ];
 
@@ -71,10 +71,18 @@ export const column_employee = [
 export const employee_data = [
   {
     id: 0,
-    department: '개발팀',
+    department: '영업팀',
     position: '과장',
-    name: '김똑순',
-    contact: '010-2222-1111',
-    email: 'jungzkxm@gmail.com',
+    name: '정과장',
+    contact: '010-0098-4766',
+    email: 'dsflkd@gmail.com',
+  },
+  {
+    id: 2,
+    department: '영업팀',
+    position: '대리',
+    name: '김대리',
+    contact: '010-2498-1821',
+    email: 'sddldkdi@gmail.com',
   },
 ];

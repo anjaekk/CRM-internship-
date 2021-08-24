@@ -85,7 +85,7 @@ const PerformanceElement = styled.div`
     ${({ theme }) => theme.flex('center', 'center', null)}
     height: 100%;
     transform: translateY(-10%);
-    font-size: 50px;
+    font-size: 5rem;
   }
 
   div {
