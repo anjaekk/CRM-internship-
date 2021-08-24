@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 function InputLabel({ children, type, placeholder, name, onChange, value }) {
   return (
-    <InputLabelEle>
+    <InputLabelElement>
       <Label>{children}</Label>
       <Input
         onChange={onChange}
@@ -15,13 +15,13 @@ function InputLabel({ children, type, placeholder, name, onChange, value }) {
         name={name}
         value={value ? value : null}
       />
-    </InputLabelEle>
+    </InputLabelElement>
   );
 }
 
 export default InputLabel;
 
-const InputLabelEle = styled.div`
+const InputLabelElement = styled.div`
   width: 100%;
   margin-top: 10px;
 `;

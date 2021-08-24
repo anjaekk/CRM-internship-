@@ -8,16 +8,16 @@ import styled from 'styled-components';
 
 function InputSubmit({ type, placeholder, name }) {
   return (
-    <InputSubmitEle>
+    <InputSubmitElement>
       <Input type={type} placeholder={placeholder} name={name} />
       <Button bg="comment">submit</Button>
-    </InputSubmitEle>
+    </InputSubmitElement>
   );
 }
 
 export default InputSubmit;
 
-const InputSubmitEle = styled.div`
+const InputSubmitElement = styled.div`
   ${({ theme }) => theme.flex('center', 'center', null)}
   width: 100%;
 `;

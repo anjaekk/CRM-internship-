@@ -3,8 +3,12 @@ import React from 'react';
 // STYLES
 import styled from 'styled-components';
 
-function Span({ children, size }) {
-  return <SpanEle size={size}>{children}</SpanEle>;
+function Span({ children, size, marginSize }) {
+  return (
+    <SpanEle size={size} marginSize={marginSize}>
+      {children}
+    </SpanEle>
+  );
 }
 
 export default Span;
@@ -24,8 +28,18 @@ const handleFontSize = size => {
   }
 };
 
+const handleMargin = marginSize => {
+  switch (marginSize) {
+    case 'false':
+      return `1rem 0 0`;
+      break;
+    default:
+      return '1rem 0';
+  }
+};
+
 const SpanEle = styled.span`
   ${({ theme }) => theme.flex('center', 'center', null)}
   font-size: ${({ size }) => handleFontSize(size)};
-  margin: 1rem 0;
+  margin: ${({ marginSize }) => handleMargin(marginSize)};
 `;

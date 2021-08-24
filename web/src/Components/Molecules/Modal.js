@@ -24,7 +24,6 @@ const modalStyle = {
   },
   content: {
     position: 'absolute',
-    // maxWidth: '500px',
     width: '800px',
     height: '500px',
     margin: `auto`,

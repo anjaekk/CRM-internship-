@@ -1,15 +1,13 @@
 import React from 'react';
 
-// 아직 크기, 색상 등등 스타일속성 조건별로 더 해야함
-
 // STYLES
 import styled, { css } from 'styled-components';
 
 function Button({ bg, children, onClick }) {
   return (
-    <ButtonEle onClick={onClick} bg={bg}>
+    <ButtonElement onClick={onClick} bg={bg}>
       {children}
-    </ButtonEle>
+    </ButtonElement>
   );
 }
 
@@ -57,7 +55,7 @@ const buttonType = bg => {
   }
 };
 
-const ButtonEle = styled.button`
+const ButtonElement = styled.button`
   ${({ theme }) => theme.flex('center', 'center', null)}
   ${({ bg }) => buttonType(bg)}
   margin-top: 5px;

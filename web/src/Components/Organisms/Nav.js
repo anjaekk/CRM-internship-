@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import { Link, useLocation } from 'react-router-dom';
 
@@ -12,6 +12,7 @@ function Nav() {
     location.pathname !== '/signup' && (
       <NavBox>
         <NavElement>
+          <CompanyName to="/">BToolTek</CompanyName>
           <NavMenu>
             <NavMenuList>
               <NavMenuLink to="/calendar">Calendar</NavMenuLink>
@@ -34,27 +35,33 @@ function Nav() {
 
 export default Nav;
 
-export const NavBox = styled.div`
+const NavBox = styled.div`
   ${({ theme }) => theme.flex('center', 'center', null)}
   background-color: rebeccapurple;
   margin-bottom: 2rem;
 `;
 
-export const NavElement = styled.div`
-  ${({ theme }) => theme.flex('center', 'center', null)}
+const NavElement = styled.div`
+  ${({ theme }) => theme.flex('space-between', 'center', null)}
   max-width: 1200px;
   width: 100%;
 `;
-export const NavMenu = styled.ul`
+const CompanyName = styled(Link)`
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+`;
+const NavMenu = styled.ul`
   ${({ theme }) => theme.flex('flex-end', 'center', null)}
   width: 100%;
 `;
-export const NavMenuList = styled.li`
+const NavMenuList = styled.li`
   margin: 1rem 0 1rem 2rem;
   list-style: none;
 `;
-export const NavMenuLink = styled(Link)`
-  font-size: 1.2rem;
+const NavMenuLink = styled(Link)`
   color: #fff;
+  font-size: 1.2rem;
   text-decoration: none;
 `;

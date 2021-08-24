@@ -7,17 +7,17 @@ function Select({ selectLists, size, onChange }) {
   const { selects } = selectLists;
   return (
     <React.Fragment>
-      <SelectEle size={size} onChange={onChange} name={selectLists.title}>
-        <OptionEle value="none">===선택===</OptionEle>
+      <SelectElement size={size} onChange={onChange} name={selectLists.title}>
+        <OptionElement value="none">===선택===</OptionElement>
         {selects.map(select => {
           const { title, id } = select;
           return (
-            <OptionEle key={id} value={id}>
+            <OptionElement key={id} value={id}>
               {title}
-            </OptionEle>
+            </OptionElement>
           );
         })}
-      </SelectEle>
+      </SelectElement>
     </React.Fragment>
   );
 }
@@ -35,10 +35,10 @@ const handleSize = size => {
   }
 };
 
-const SelectEle = styled.select`
+const SelectElement = styled.select`
   ${({ theme }) => theme.flex('center', 'center', null)}
   margin: 0 1rem;
   padding: ${({ size }) => handleSize(size)};
   font-size: 1rem;
 `;
-const OptionEle = styled.option``;
+const OptionElement = styled.option``;

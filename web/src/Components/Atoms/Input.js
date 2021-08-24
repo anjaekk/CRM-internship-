@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 function Input({ type, placeholder, name, onChange, value }) {
   return (
-    <InputEle
+    <InputElement
       onChange={onChange}
       type={type}
       placeholder={placeholder}
@@ -18,7 +18,7 @@ function Input({ type, placeholder, name, onChange, value }) {
 
 export default Input;
 
-const InputEle = styled.input`
+const InputElement = styled.input`
   ${({ theme }) => theme.flex('center', 'center', null)}
   width: 100%;
   margin-top: 5px;

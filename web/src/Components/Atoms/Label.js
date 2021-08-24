@@ -4,12 +4,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 function Label({ children }) {
-  return <LabelEle>{children}</LabelEle>;
+  return <LabelElement>{children}</LabelElement>;
 }
 
 export default Label;
 
-const LabelEle = styled.label`
+const LabelElement = styled.label`
   width: 100%;
   margin-top: 5px;
 `;

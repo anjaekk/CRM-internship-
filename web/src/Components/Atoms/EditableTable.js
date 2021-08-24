@@ -52,8 +52,6 @@ const EditCell = ({
     setValue(e.target.value);
   };
   const onBlur = () => {
-    // updateMyData(index, id, value);
-    // updateMyData(index);
     updateMyData();
   };
 
