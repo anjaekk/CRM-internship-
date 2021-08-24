@@ -183,7 +183,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ],
-    'EXCEPTION_HANDLER': 'api.utils.custom_exception_handler',
+    # 'EXCEPTION_HANDLER': 'api.utils.custom_exception_handler',
 }
 
 REST_USE_JWT = True
@@ -214,6 +214,7 @@ JWT_AUTH = {
 }
 
 SWAGGER_SETTINGS = {
+    ' VALIDATOR_URL ': 'http://localhost:8000',
       'SECURITY_DEFINITIONS': {
          'DRF Token': {
                'type': 'apiKey',
