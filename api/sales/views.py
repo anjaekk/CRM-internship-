@@ -1,4 +1,4 @@
-from datetime import date, datetime, timedelta
+from datetime import datetime
 
 from django.db.models import Sum
 
@@ -7,9 +7,8 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 
-
 from .models import Contract
-from .serializers import MonthlyProductTotalSerializer, ProductSaleSerializer
+from .serializers import MonthlyProductTotalSerializer
 
 class MonthlyProductTotalView(APIView):
     serializer_class = MonthlyProductTotalSerializer
@@ -25,8 +24,3 @@ class MonthlyProductTotalView(APIView):
             dict["value"] = income["price__sum"]
             monthly_income.append(dict)
         return Response(monthly_income, status=status.HTTP_200_OK)
-
-
-# class ProductSaleView(APIView):
-#     serializer_class = MonthlyProductTotalSerializer
-#     permission_classes = [IsAuthenticated]
