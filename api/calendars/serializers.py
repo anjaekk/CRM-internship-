@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db.models import fields
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer, ReadOnlyField, Serializer, SlugRelatedField
@@ -73,3 +75,7 @@ class CreateScheduleSerializer(ModelSerializer):
             UserSchedule.objects.create(schedule=schedule, user=user["user"])
 
         return schedule
+
+class CalendarQuerySerializer(Serializer):
+    year = serializers.CharField(allow_blank=True, allow_null=True, default=datetime.now().year)
+    month = serializers.CharField(allow_blank=True, allow_null=True, default=datetime.now().month)

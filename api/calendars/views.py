@@ -1,7 +1,7 @@
 from datetime import datetime
-from django.db.models.query import Prefetch, QuerySet
 
 from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 from django.db.models   import Q
 from django.shortcuts import get_object_or_404
@@ -11,28 +11,30 @@ from rest_framework.filters    import OrderingFilter
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework import viewsets
 
-from calendars.models import schedule
-
 from .models import Schedule
-from .serializers import CalendarSerializer, ScheduleSerializer, CreateScheduleSerializer
+from .serializers import CalendarSerializer, ScheduleSerializer, CreateScheduleSerializer, CalendarQuerySerializer
 
 from rest_framework import status
 from rest_framework.response import Response
-from companies.models import Contact, Company, company
+
 
 class CalendarsListView(ListAPIView):
     serializer_class = CalendarSerializer
-    permission_classes = [IsAuthenticated]
-
+    permission_classes = [AllowAny]
     filter_backends = [OrderingFilter]
 
+    year = openapi.Parameter("year", openapi.IN_QUERY, description="year", type=openapi.TYPE_STRING)
+    month = openapi.Parameter("month", openapi.IN_QUERY, description="month", type=openapi.TYPE_STRING)
+
     @swagger_auto_schema(
-        request_body=CalendarSerializer,
+        manual_parameters = [year, month],
+        query_serializer = CalendarQuerySerializer,
         response={
             "200":"SUCCESS",
             "400":"BAD_REQUEST"
         },
-        operation_id="캘린더",
+        security=[],
+        operation_id="캘린더 리스트",
         operation_description="해당 year과 month를 쿼리로 보내주세요.")
     def get_queryset(self):
         queryset = Schedule.objects.all()
@@ -52,6 +54,8 @@ class ScheduleCreateView(CreateAPIView):
     queryset = Schedule.objects.all()
     serializer_class = CreateScheduleSerializer
     permission_classes = [AllowAny]
+
+
     @swagger_auto_schema(
         request_body=CreateScheduleSerializer,
         response={
