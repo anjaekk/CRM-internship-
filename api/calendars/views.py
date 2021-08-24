@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 
 from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.filters    import OrderingFilter
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets
 
 from .models import Schedule
@@ -20,7 +20,7 @@ from rest_framework.response import Response
 
 class CalendarsListView(ListAPIView):
     serializer_class = CalendarSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     filter_backends = [OrderingFilter]
 
     year = openapi.Parameter("year", openapi.IN_QUERY, description="year", type=openapi.TYPE_STRING)
