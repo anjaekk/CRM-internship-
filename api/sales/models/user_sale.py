@@ -8,4 +8,4 @@ class UserSale(models.Model):
     sale = models.ForeignKey(Sale, on_delete=models.CASCADE)
 
     class Meta:
-        db_table = 'users_sale'
+        db_table = "users_sale"

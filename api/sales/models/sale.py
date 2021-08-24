@@ -9,8 +9,5 @@ class Sale(CreateTime):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     progress = models.ForeignKey(Progress, on_delete=models.SET_NULL, null=True)
 
-    def __str__(self):
-        return self.product
-
     class Meta:
-        db_table = 'sales'
+        db_table = "sales"

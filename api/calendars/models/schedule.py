@@ -11,10 +11,7 @@ class Schedule(CreateTime):
     schedule_date = models.DateTimeField()
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     contact = models.ForeignKey(Contact, on_delete=models.SET_NULL, null=True)
-    user = models.ManyToManyField(User, through='UserSchedule')
-
-    def __str__(self):
-        return self.title
+    user = models.ManyToManyField(User, through="UserSchedule")
         
     class Meta:
-        db_table = 'schedules'
+        db_table = "schedules"

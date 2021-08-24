@@ -1,18 +1,17 @@
-from django.db.models import fields
-from rest_framework import serializers
-from rest_framework.serializers import ModelSerializer, ReadOnlyField, SlugRelatedField
+from datetime import datetime
 
-from calendars.models import user_schedule
+from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer, ReadOnlyField, Serializer, SlugRelatedField
 
 from .models import Schedule, UserSchedule
-from companies.models import Contact, Company
+from companies.models import Company
 from companies.serializers import ContactSheduleSerializer
-from users.models import User
 
 
 class CalendarSerializer(ModelSerializer):
     title = ReadOnlyField(source="company.name")
     start = ReadOnlyField(source="schedule_date")
+
     class Meta:
         model = Schedule
         fields = ["id", "title", "start"]
@@ -35,7 +34,7 @@ class ScheduleSerializer(ModelSerializer):
 
     def to_representation(self, instance):
         response = super().to_representation(instance)
-        response['contact'] = ContactSheduleSerializer(instance.contact).data
+        response["contact"] = ContactSheduleSerializer(instance.contact).data
         return response
         
     class Meta:
@@ -49,28 +48,30 @@ class UserScheduleCreateSerializer(ModelSerializer):
         model = UserSchedule
         fields = ["user"]
         
+
 class CreateScheduleSerializer(ModelSerializer):
     company = serializers.CharField(source="company.name")
-    user_schedule = UserScheduleCreateSerializer(many=True, required=False)
+    employee = UserScheduleCreateSerializer(many=True, required=False)
     class Meta:
         model = Schedule
         exclude = ["contact"]
 
     def create(self, validated_data):
         company_data = validated_data.pop("company")
-        user_data = validated_data.pop("user_schedule")
-        company = Company.objects.get(name=company_data["name"])
+        user_data = validated_data.pop("employee")
+        company, created = Company.objects.get_or_create(name=company_data["name"])
 
         schedule = Schedule.objects.create(
             schedule_date = validated_data["schedule_date"],
             title = validated_data["title"],
             content = validated_data["content"],
             company = company)
-        print(company_data)
+
         for user in user_data:
-            #print(User.objects.get(id=).id)
-            print("==============================")
-            print(user["user"])
             UserSchedule.objects.create(schedule=schedule, user=user["user"])
 
         return schedule
+
+class CalendarQuerySerializer(Serializer):
+    year = serializers.CharField(allow_blank=True, allow_null=True, default=datetime.now().year)
+    month = serializers.CharField(allow_blank=True, allow_null=True, default=datetime.now().month)

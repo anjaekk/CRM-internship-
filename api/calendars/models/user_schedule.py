@@ -9,4 +9,4 @@ class UserSchedule(models.Model):
     schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE)
 
     class Meta:
-        db_table = 'users_schedules'
+        db_table = "users_schedules"
