@@ -8,4 +8,4 @@ class UserContract(models.Model):
     contract = models.ForeignKey(Contract, on_delete=models.CASCADE)
 
     class Meta:
-        db_table = 'users_contracts'
+        db_table = "users_contracts"

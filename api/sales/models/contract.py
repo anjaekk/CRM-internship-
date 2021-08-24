@@ -14,10 +14,7 @@ class Contract(CreateTime):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     unit_price = models.DecimalField(max_digits=18, decimal_places=2, null=True, blank=True)
     price = models.DecimalField(max_digits=18, decimal_places=2)
-    user = ManyToManyField(User, through='UserContract')
-
-    def __str__(self):
-        return self.company
+    user = ManyToManyField(User, through="UserContract")
 
     class Meta:
-        db_table = 'contracts'
+        db_table = "contracts"

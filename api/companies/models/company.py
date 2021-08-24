@@ -1,9 +1,9 @@
 from django.db import models
 
 PRIORITY = (
-    ('l', 'low'),
-    ('m', 'middle'),
-    ('h', 'high'),
+    ("l", "low"),
+    ("m", "middle"),
+    ("h", "high"),
 )
 
 class Company(models.Model):
@@ -12,9 +12,6 @@ class Company(models.Model):
     email = models.EmailField()
     address = models.CharField(max_length=1000)
     priority = models.CharField(max_length=45, choices=PRIORITY)
-
-    def __str__(self):
-        return self.name
 
     class Meta:
         db_table = 'companies'

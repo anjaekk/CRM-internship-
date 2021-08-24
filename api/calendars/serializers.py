@@ -11,7 +11,7 @@ from companies.serializers import ContactSheduleSerializer
 class CalendarSerializer(ModelSerializer):
     title = ReadOnlyField(source="company.name")
     start = ReadOnlyField(source="schedule_date")
-    
+
     class Meta:
         model = Schedule
         fields = ["id", "title", "start"]
@@ -34,7 +34,7 @@ class ScheduleSerializer(ModelSerializer):
 
     def to_representation(self, instance):
         response = super().to_representation(instance)
-        response['contact'] = ContactSheduleSerializer(instance.contact).data
+        response["contact"] = ContactSheduleSerializer(instance.contact).data
         return response
         
     class Meta:

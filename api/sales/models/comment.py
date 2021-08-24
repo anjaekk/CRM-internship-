@@ -9,8 +9,5 @@ class Comment(CreateTime):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     content = models.TextField()
 
-    def __str__(self):
-        return self.content
-
     class Meta:
-        db_table = 'comments'
+        db_table = "comments"

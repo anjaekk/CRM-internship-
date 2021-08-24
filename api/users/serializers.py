@@ -19,9 +19,7 @@ class UserSignupSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
         if len(validated_data["password"]) < 8:
-            raise serializers.ValidationError(
-                "The password has to be at least 8 chars long"
-            )
+            raise serializers.ValidationError("The password has to be at least 8 chars long")
         return user
 
 
@@ -30,7 +28,7 @@ JWT_ENCODE_HANDLER = api_settings.JWT_ENCODE_HANDLER
 
 
 class UserSignInSerializer(serializers.Serializer):
-    
+
     class Meta:
         model = User
         fields = ("employee_number", "password", "name")

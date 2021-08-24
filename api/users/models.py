@@ -25,11 +25,11 @@ JOB_TITLE = (
 class UserManager(BaseUserManager):
     def create_user(self, employee_number, name, password=None, **extra_fields):
         if not employee_number:
-            raise ValueError('must have user employee_number')
+            raise ValueError("must have user employee_number")
         if not name:
-            raise ValueError('must have user name')
+            raise ValueError("must have user name")
         if not password:
-            raise ValueError('must have user password')
+            raise ValueError("must have user password")
         user = self.model(
             employee_number = employee_number,
             name = name,
@@ -51,8 +51,8 @@ class User(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
-    USERNAME_FIELD = 'employee_number'
-    REQUIRED_FIELDS = ['name']
+    USERNAME_FIELD = "employee_number"
+    REQUIRED_FIELDS = ["name"]
 
     objects = UserManager()
 
@@ -63,4 +63,4 @@ class User(AbstractBaseUser):
         return True
 
     class Meta:
-        db_table = 'users'
+        db_table = "users"
