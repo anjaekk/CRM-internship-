@@ -16,38 +16,38 @@ function index() {
     setWidth(confettiRef.current.clientWidth);
   }, []);
 
-  useEffect(() => {
-    handleFetch();
-  }, [monthData]);
+  // useEffect(() => {
+  //   handleFetch();
+  // }, []);
 
   function sliceData(data) {
     data.map(el => {
       let a = el.value.toString().slice(0, 4);
-      return monthData.push({ name: el.name, value: Number(a) });
+      setMonthData([{ name: el.name, value: Number(a) }]);
     });
   }
 
-  const handleFetch = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      };
-      const response = await axios.get(`${PERFORMANCE_URL}`, config);
-      if (response) {
-        sliceData(response.data);
-      }
-    } catch (err) {
-      console.log(`err.response.status`, err.response.status);
-    }
-  };
-  console.log(`monthData1`, monthData);
+  // const handleFetch = async () => {
+  //   try {
+  //     const token = localStorage.getItem('token');
+  //     const config = {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //         'Content-Type': 'application/json',
+  //       },
+  //     };
+  //     const response = await axios.get(`${PERFORMANCE_URL}`, config);
+  //     if (response) {
+  //       sliceData(response.data);
+  //     }
+  //   } catch (err) {
+  //     console.log(`err.response.status`, err.response.status);
+  //   }
+  // };
+  // console.log(`monthData`, monthData);
   return (
     <Templete
-      monthData={monthData}
+      // monthData={monthData}
       confettiRef={confettiRef}
       width={width}
       height={height}
