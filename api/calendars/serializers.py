@@ -43,7 +43,7 @@ class ScheduleSerializer(ModelSerializer):
 
 
 
-class UserScheduleCreateSerializer(ModelSerializer):
+class CreateUserScheduleSerializer(ModelSerializer):
     class Meta:
         model = UserSchedule
         fields = ["user"]
@@ -51,7 +51,7 @@ class UserScheduleCreateSerializer(ModelSerializer):
 
 class CreateScheduleSerializer(ModelSerializer):
     company = serializers.CharField(source="company.name")
-    employee = UserScheduleCreateSerializer(many=True, required=False)
+    employee = CreateUserScheduleSerializer(many=True, required=False)
     class Meta:
         model = Schedule
         exclude = ["contact"]

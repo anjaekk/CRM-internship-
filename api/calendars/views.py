@@ -51,7 +51,7 @@ class ScheduleViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
 
-class ScheduleCreateView(CreateAPIView):
+class CreateScheduleView(CreateAPIView):
     queryset = Schedule.objects.all()
     serializer_class = CreateScheduleSerializer
     permission_classes = [IsAuthenticated]

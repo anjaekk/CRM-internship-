@@ -2,7 +2,6 @@ import json
 
 from django.contrib.auth import authenticate
 from django.contrib.auth import get_user_model
-from rest_framework.authtoken.models import Token
 
 from rest_framework.test import APITestCase
 from rest_framework_jwt.settings import api_settings
