@@ -21,6 +21,6 @@ class MonthlyProductTotalView(APIView):
             month = datetime.now().month-month_filter
             income = Contract.objects.filter(start_date__month__gte=month).aggregate(Sum('price'))
             dict["name"] = month
-            dict["value"] = income["price__sum"]
+            dict["value"] = round(income["price__sum"]/10000000, 0)
             monthly_income.append(dict)
         return Response(monthly_income, status=status.HTTP_200_OK)
