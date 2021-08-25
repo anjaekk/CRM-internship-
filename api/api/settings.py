@@ -180,10 +180,10 @@ REST_FRAMEWORK = {
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ],
     'DEFAULT_RENDERER_CLASSES': [
-        # 자동으로 json으로 바꿔줌
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ],
+    # 'EXCEPTION_HANDLER': 'api.utils.custom_exception_handler',
 }
 
 REST_USE_JWT = True
@@ -214,11 +214,11 @@ JWT_AUTH = {
 }
 
 SWAGGER_SETTINGS = {
-      'SECURITY_DEFINITIONS': {
-         'DRF Token': {
-               'type': 'apiKey',
-               'name': 'Authorization',
-               'in': 'header'
-         }
-      }
-   }
+    'SECURITY_DEFINITIONS': {
+        'DRF Token': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    }
+}

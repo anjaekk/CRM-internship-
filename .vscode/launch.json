@@ -16,6 +16,21 @@
       ]
     },
     {
+      "name": "장고 디버그(원격)",
+      "type": "python",
+      "request": "attach",
+      "connect": {
+        "host": "ec2-3-38-99-233.ap-northeast-2.compute.amazonaws.com",
+        "port": 5678
+      },
+      "pathMappings": [
+        {
+          "localRoot": "${workspaceFolder}/api",
+          "remoteRoot": "/app"
+        }
+      ]
+    },
+    {
       "name": "리액트 디버그",
       "type": "chrome",
       "request": "launch",
