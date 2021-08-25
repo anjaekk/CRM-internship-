@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 // LIBRARY
 import Modal from 'react-modal';
@@ -25,6 +26,7 @@ function index() {
   const calendarRef = useRef(null);
   const newYear = moment(start).format('YYYY');
   const newMonth = moment(start).format('MM');
+  const history = useHistory();
   const [eventDetail, setEventDetail] = useState({
     company: '',
     title: '',
@@ -54,8 +56,8 @@ function index() {
         config
       );
       setEvents(response.data);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(`err.response.status`, err.response.status);
     }
   };
 
@@ -87,7 +89,6 @@ function index() {
 
   const newSchedule = async () => {
     const { company, title, content } = eventDetail;
-
     try {
       const token = localStorage.getItem('token');
       const config = {
@@ -103,7 +104,7 @@ function index() {
           schedule_date: start,
           title: title,
           content: content,
-          user_schedule: [
+          employee: [
             {
               user: 26,
             },
