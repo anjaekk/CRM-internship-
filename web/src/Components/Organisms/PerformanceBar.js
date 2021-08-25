@@ -10,30 +10,31 @@ import {
 } from 'recharts';
 import { CommentBox } from '.';
 
-const data = [
-  {
-    name: 'January',
-    value: 4000,
-  },
-  {
-    name: 'March',
-    value: 3000,
-  },
-  {
-    name: 'May',
-    value: 2000,
-  },
-  {
-    name: 'August',
-    value: 2780,
-  },
-  {
-    name: 'October',
-    value: 1890,
-  },
-];
+// const data = [
+//   {
+//     name: 'January',
+//     value: 4000,
+//   },
+//   {
+//     name: 'March',
+//     value: 3000,
+//   },
+//   {
+//     name: 'May',
+//     value: 2000,
+//   },
+//   {
+//     name: 'August',
+//     value: 2780,
+//   },
+//   {
+//     name: 'October',
+//     value: 1890,
+//   },
+// ];
 
-function index() {
+function index({ data }) {
+  console.log(`data`, data);
   return (
     <ResponsiveContainer width="100%" aspect={3}>
       <AreaChart

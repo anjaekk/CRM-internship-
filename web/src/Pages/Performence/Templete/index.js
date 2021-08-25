@@ -14,7 +14,6 @@ import {
 import styled from 'styled-components';
 
 function index({ width, height, confettiRef, monthData }) {
-  console.log(`monthData2`, monthData);
   return (
     <Container>
       <Span size="lg">Sales Dashboard</Span>
