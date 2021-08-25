@@ -5,9 +5,9 @@ import styled from 'styled-components';
 
 function Span({ children, size, marginSize }) {
   return (
-    <SpanEle size={size} marginSize={marginSize}>
+    <SpanElement size={size} marginSize={marginSize}>
       {children}
-    </SpanEle>
+    </SpanElement>
   );
 }
 
@@ -38,7 +38,7 @@ const handleMargin = marginSize => {
   }
 };
 
-const SpanEle = styled.span`
+const SpanElement = styled.span`
   ${({ theme }) => theme.flex('center', 'center', null)}
   font-size: ${({ size }) => handleFontSize(size)};
   margin: ${({ marginSize }) => handleMargin(marginSize)};

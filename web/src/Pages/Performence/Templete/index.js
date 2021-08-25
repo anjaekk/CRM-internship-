@@ -13,7 +13,8 @@ import {
 // STYLES
 import styled from 'styled-components';
 
-function index({ width, height, confettiRef }) {
+function index({ width, height, confettiRef, monthData }) {
+  console.log(`monthData2`, monthData);
   return (
     <Container>
       <Span size="lg">Sales Dashboard</Span>
@@ -28,7 +29,7 @@ function index({ width, height, confettiRef }) {
           <Span size="mid" marginSize="false">
             Forecasted Revenue by Month
           </Span>
-          <PerformanceBar />
+          {monthData && <PerformanceBar data={monthData} />}
         </PerformanceElementTop>
         <ConfettiBox ref={confettiRef}>
           <Span size="mid" marginSize="false">

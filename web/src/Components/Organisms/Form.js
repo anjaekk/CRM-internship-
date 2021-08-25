@@ -9,12 +9,12 @@ function Form({ children, fetch }) {
     fetch();
   };
 
-  return <FormEle onSubmit={onSubmit}>{children}</FormEle>;
+  return <FormElement onSubmit={onSubmit}>{children}</FormElement>;
 }
 
 export default Form;
 
-const FormEle = styled.form`
+const FormElement = styled.form`
   width: 800px;
   padding: 2rem;
   border-radius: 5px;

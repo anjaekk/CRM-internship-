@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 function CommentBox({ size, children }) {
   return (
-    <CommentBoxEle size={size}>
+    <CommentBoxElement size={size}>
       <Top>
         <Span size="sm">Comments</Span>
         <CommnetWrap>{children}</CommnetWrap>
@@ -19,7 +19,7 @@ function CommentBox({ size, children }) {
         placeholder="enter your comments"
         name="comment"
       />
-    </CommentBoxEle>
+    </CommentBoxElement>
   );
 }
 
@@ -41,7 +41,7 @@ const boxSize = size => {
   }
 };
 
-const CommentBoxEle = styled.div`
+const CommentBoxElement = styled.div`
   ${({ theme }) => theme.flex('space-between', 'center', 'column')}
   width: ${({ size }) => boxSize(size)};
   height: 300px;

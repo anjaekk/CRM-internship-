@@ -54,10 +54,14 @@ function index() {
           case 401:
             alert('You do not have permission to access.');
           default:
-            alert('Please check the employee number and password.');
+            alert('Please check the employee number and password again.');
             break;
         }
       }
+    } else {
+      alert(
+        '비밀번호는 8글자 이상, 소문자, 대문자, 특수문자는 필수로 입력해주세요'
+      );
     }
   };
 
