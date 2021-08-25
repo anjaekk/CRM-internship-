@@ -214,12 +214,11 @@ JWT_AUTH = {
 }
 
 SWAGGER_SETTINGS = {
-    ' VALIDATOR_URL ': 'http://localhost:8000',
-      'SECURITY_DEFINITIONS': {
-         'DRF Token': {
-               'type': 'apiKey',
-               'name': 'Authorization',
-               'in': 'header'
-         }
-      }
-   }
+    'SECURITY_DEFINITIONS': {
+        'DRF Token': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    }
+}
