@@ -8,7 +8,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import { CommentBox } from '.';
+// import { CommentBox } from '.';
 
 // const data = [
 //   {
@@ -34,7 +34,6 @@ import { CommentBox } from '.';
 // ];
 
 function index({ data }) {
-  console.log(`data`, data);
   return (
     <ResponsiveContainer width="100%" aspect={3}>
       <AreaChart
