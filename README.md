@@ -28,6 +28,7 @@ https://youtu.be/c-EGh6YyENE
 - 로그인 시 jwt 토큰 생성
 - schedule 생성 기능 구현
 - calendar list CRUD
+- docker container 기반 프로젝트 구축
 
 ## 📍 API Documentation
 https://documenter.getpostman.com/view/16450829/Tzz5sd6Q
