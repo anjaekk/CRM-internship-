@@ -2,11 +2,11 @@
 B2tech 기업에서 한달간 인턴활동을 하며 진행한 CRM 사이트 제작 프로젝트 입니다.
 
 ## 📍 프로젝트 개요
-CRM 영업지원 구축 프로젝트
-기 간: 2021.08.02.~2021.08.27.(20일)
-Team member
-Frontend: 1인(성정준)
-Backend: 1인(안재경)
+CRM 영업지원 구축 프로젝트  
+기 간: 2021.08.02.~2021.08.27.(20일)  
+Team member  
+Frontend: 1인(성정준)  
+Backend: 1인(안재경)  
 
 ## 📍 프로젝트 미리보기
 https://youtu.be/c-EGh6YyENE
