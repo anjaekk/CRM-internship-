@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from .api_settings import DATABASES, SECRET_KEY
 import datetime 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ian)ux027piw_7cq7x((t!zw4xjt2-%6@xo7!!77t1@on+m&!)'
+SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -87,16 +88,18 @@ WSGI_APPLICATION = 'api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'btooltek',
-        'USER': 'wecode22',
-        'PASSWORD':'wecode22',
-        'HOST': 'wecode22.cx1nsexwbsnv.ap-northeast-2.rds.amazonaws.com',
-        'PORT': '3306',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'btooltek',
+#         'USER': 'wecode22',
+#         'PASSWORD':'wecode22',
+#         'HOST': 'wecode22.cx1nsexwbsnv.ap-northeast-2.rds.amazonaws.com',
+#         'PORT': '3306',
+#     }
+# }
+
+DATABASES = DATABASES
 
 
 # Password validation
