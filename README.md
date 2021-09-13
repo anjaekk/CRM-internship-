@@ -33,7 +33,7 @@ https://youtu.be/c-EGh6YyENE
 https://documenter.getpostman.com/view/16450829/Tzz5sd6Q
 
 ## 📍 프로젝트 진행
-Trello를 이용한 Scrum관리
-기능 구현시 바로바로 통신
-매일 어제 한 일, 오늘 할 일, 특이사항 공유 stand up meeting 진행
-미팅전 Agenda 공유
+Trello를 이용한 Scrum관리 
+기능 구현시 바로바로 통신  
+매일 어제 한 일, 오늘 할 일, 특이사항 공유 stand up meeting 진행  
+미팅전 Agenda 공유  
