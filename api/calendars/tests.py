@@ -150,3 +150,58 @@ class ScheduleViewTest(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION = "Bearer " + self.access_token)
         response = self.client.patch(self.schedule_url, {"content": "update content!"})
         self.assertEqual(200, response.status_code)
+
+
+class SchduleCreateViewTest(APITestCase):
+
+    schedule_url = "/calendars/schedule"
+
+    def setUp(self):
+        self.company = Company.objects.create(
+            id = 1,
+            name = "testcompany",
+            contact = "0211112222",
+            email = "test@email.com",
+            address = "testaddress",
+            priority = "m"
+        )
+
+        self.contact = Contact.objects.create(
+            id = 1,
+            company_id = 1,
+            name = "contactname",
+            department = "sale",
+            job_title = "manager",
+            email = "test@email.com",
+            phone_number = "010-1111-2222"
+        )
+
+        self.user = User.objects.create_user(
+            employee_number = "testuser",
+            phone_number = "000000000000",
+            password = "12345678",
+            name = "testuser",
+            department = 4,
+            job_title = 5
+        )
+
+        JWT_PAYLOAD_HANDLER = api_settings.JWT_PAYLOAD_HANDLER
+        JWT_ENCODE_HANDLER = api_settings.JWT_ENCODE_HANDLER
+        payload = JWT_PAYLOAD_HANDLER(self.user)
+        self.access_token = JWT_ENCODE_HANDLER(payload)
+
+    def tearDown(self):
+        self.company.delete()
+        self.contact.delete()
+        self.user.delete()
+
+        def test_schedule_post(self):
+            self.client.credentials(HTTP_AUTHORIZATION = "Bearer " + self.access_token)
+            response = self.client.post(self.schedule_url,{
+                "company": "(주)Adra",
+                "schedule_date": "2032-12-16 06:23:53",
+                "title": "계약진행",
+                "content": "계약 진행 여부 검토하여 회신완료",
+                "employee": [{"user": 1},{"user": 2}]
+            })
+            self.assertEqual(201, response.status_code)
