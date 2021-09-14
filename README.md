@@ -22,8 +22,7 @@ https://youtu.be/c-EGh6YyENE
 </details>
 
 ## 📍 구현한 기능
-- Unit test를 통한 코드 검사
-- AbstractBaseUser 클래스를 상속받아 Custom user 생성
+- Unit test시행
 - AbstractBaseUser 클래스를 상속받아 Custom user 생성
 - 로그인 시 jwt 토큰 생성
 - schedule 생성 기능 구현
