@@ -11,7 +11,7 @@ User = get_user_model()
 
 class SignUpTest(APITestCase):
 
-    signup_url = "http://localhost:8000/users/signup"
+    signup_url = "/users/signup"
 
     def test_signupview_post_user_registration_success(self):
         user_data = {
@@ -156,7 +156,7 @@ JWT_ENCODE_HANDLER = api_settings.JWT_ENCODE_HANDLER
 
 class SignInTest(APITestCase):
 
-    signin_url = "http://localhost:8000/users/signin"
+    signin_url = "/users/signin"
 
     def setUp(self):
         self.user = User.objects.create_user(
