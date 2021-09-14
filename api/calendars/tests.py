@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 
 from rest_framework.test import APITestCase
 from rest_framework_jwt.settings import api_settings
+from rest_framework.authtoken.models import Token
 
 from companies.models import Company, Contact
 from .models import Schedule
@@ -25,7 +26,7 @@ class CalendarsListViewTest(APITestCase):
 
         self.contact = Contact.objects.create(
             id = 1,
-            company = 1,
+            company_id = 1,
             name = "contactname",
             department = "sale",
             job_title = "manager",
@@ -34,12 +35,12 @@ class CalendarsListViewTest(APITestCase):
         )
 
         self.user = User.objects.create_user(
-        employee_number = "testuser",
-        phone_number = "000000000000",
-        password = "12345678",
-        name = "testuser",
-        department = 4,
-        job_title = 5
+            employee_number = "testuser",
+            phone_number = "000000000000",
+            password = "12345678",
+            name = "testuser",
+            department = 4,
+            job_title = 5
         )
 
         self.schedule = Schedule.objects.create(
@@ -49,8 +50,13 @@ class CalendarsListViewTest(APITestCase):
             schedule_date = "2021-01-01 06:23:53",
             company_id = 1,
             contact_id = 1,
-            user = self.user
         )
+        self.schedule.user.add(self.user)
+
+        JWT_PAYLOAD_HANDLER = api_settings.JWT_PAYLOAD_HANDLER
+        JWT_ENCODE_HANDLER = api_settings.JWT_ENCODE_HANDLER
+        payload = JWT_PAYLOAD_HANDLER(self.user)
+        self.access_token = JWT_ENCODE_HANDLER(payload)
 
     def tearDown(self):
         self.company.delete()
@@ -58,4 +64,7 @@ class CalendarsListViewTest(APITestCase):
         self.user.delete()
         self.schedule.delete()
 
-    # def test_calendarslistview_get_success(self)
+    def test_calendarslistview_get_success(self):
+        self.client.credentials(HTTP_AUTHORIZATION = 'Bearer ' + self.access_token)
+        response = self.client.get(self.calendarslist_url)
+        self.assertEqual(200, response.status_code)
