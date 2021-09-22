@@ -10,12 +10,11 @@ from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.filters    import OrderingFilter
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets
+from rest_framework import status
+from rest_framework.response import Response
 
 from .models import Schedule
 from .serializers import CalendarSerializer, ScheduleSerializer, CreateScheduleSerializer, CalendarQuerySerializer
-
-from rest_framework import status
-from rest_framework.response import Response
 
 
 class CalendarsListView(ListAPIView):
