@@ -1,0 +1,40 @@
+version: '3.4'
+
+services:
+  api:
+    image: api
+    container_name: api
+    build:
+      context: api
+      dockerfile: ./Dockerfile
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    container_name: btooltek
+    environment:
+      MYSQL_DATABASE: btooltek
+      MYSQL_ROOT_USER: root
+      MYSQL_PASSWORD: "12345"
+      MYSQL_ROOT_PASSWORD: "12345"
+    ports:
+      - 3306:3306
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+
+  web:
+    image: web
+    container_name: web
+    build:
+      context: web
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 80:80
+    depends_on: 
+      - api
